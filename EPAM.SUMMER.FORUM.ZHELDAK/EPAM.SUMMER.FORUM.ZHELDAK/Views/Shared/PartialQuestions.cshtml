@@ -1,0 +1,48 @@
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.QuestionModels
+@using Ninject.Infrastructure.Language
+@model IEnumerable<QuestionForAdminModel>
+
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.DisplayName("Category Name")
+        </th>
+        <th>
+            @Html.DisplayName("Question")
+        </th>
+
+        <th>
+            @Html.DisplayName("Date Of Question")
+        </th>
+        <th>
+            Delete
+        </th>
+    </tr>
+    @{
+        var group =
+            Model.GroupBy(u => u.CategoryName)
+                .Select(grp => new {CategoryName = grp.Key, questions = grp.ToEnumerable()});
+        foreach (var item in group)
+        {
+            var rowspan = item.questions.Count() + 1;
+            <tr>
+                <td rowspan=@rowspan>@item.CategoryName</td>
+
+                @foreach (var questions in item.questions)
+                {
+                    <tr>
+                    <td>@questions.Question</td>
+                    <td>@questions.DateOfQuestion</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Question", new { id = questions.Id }, null)</td>
+                    </tr>
+                }
+
+                
+            </tr>
+        }
+    }
+ </table>
+
+

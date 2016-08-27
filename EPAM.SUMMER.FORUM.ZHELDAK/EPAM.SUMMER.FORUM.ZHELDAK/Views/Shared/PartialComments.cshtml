@@ -1,0 +1,26 @@
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
+@model CommentsOnQuestionModel
+
+<div class="row">
+    <div class="col-md-1">
+        <span class="glyphicon comment  @if (Model.IsRight != null && Model.IsRight == true)
+                                                    {
+                                                        @: glyphicon-thumbs-up
+                                                    }"></span>
+    </div>
+    <div class="col-md-3">
+        <div class="row">
+            <h6>@Model.FirstName @Model.LastName</h6>
+        </div>
+        @Html.Raw("<img style='width:130px; height:110px; border-radius:15px;' src=\"data:image/jpeg;base64,"
+                              + Convert.ToBase64String(Model.Photo) + "\" />")
+    </div>
+    <div class="col-md-5 ">
+        <div class="textComment">
+            @Model.Comment
+        </div>
+        <div class="row">
+            <h6><small class="date">@Model.DateOfComment</small></h6>
+        </div>
+    </div>
+</div>

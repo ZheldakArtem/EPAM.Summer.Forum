@@ -1,0 +1,22 @@
+﻿
+@if (Request.IsAuthenticated)
+{
+    @Html.AntiForgeryToken()
+    <ul class="nav navbar-nav navbar-right">
+        @if (User.IsInRole("admin"))
+        {
+            <li> @Html.ActionLink("Admin's Page", "Admin", "Admin")</li>
+        }
+        <li>@Html.ActionLink(User.Identity.Name, "MainPage", "Category")</li>
+        <li><a href="@Url.Action("LogOff", "Account")"><span class="glyphicon glyphicon-log-out"></span> Login Off</a></li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href=@Url.Action("Register", "Account")><span class="glyphicon glyphicon-user"></span> Regestration</a></li>
+        <li><a href="@Url.Action("Login", "Account")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+}
+
+

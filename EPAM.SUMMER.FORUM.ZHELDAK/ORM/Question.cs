@@ -17,7 +17,7 @@ namespace ORM
         public int Id { get; set; }
 
         [Column("Question")]
-        public string Question1 { get; set; }
+        public string Question_ { get; set; }
 
         public DateTime? DateOfQuestion { get; set; }
 
