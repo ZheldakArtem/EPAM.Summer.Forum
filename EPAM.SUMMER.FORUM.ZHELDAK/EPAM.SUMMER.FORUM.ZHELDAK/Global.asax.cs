@@ -20,5 +20,15 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK
             DependencyResolver.SetResolver(new NinjectDependencyResolver(NinjectConfig.StandartKernel));
 
         }
+
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new HandleErrorAttribute()
+            {
+                ExceptionType=typeof(Exception),
+                Master = "_Layout",
+                View = "Error"
+            });
+        }
     }
 }

@@ -1,10 +1,10 @@
-using System;
-using System.Data.Entity;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-
 namespace ORM
 {
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
     public partial class EntityModel : DbContext
     {
         public EntityModel()
@@ -34,6 +34,10 @@ namespace ORM
                 .HasMany(e => e.Users)
                 .WithMany(e => e.Roles)
                 .Map(m => m.ToTable("UsersRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.MimeType)
+                .IsUnicode(false);
         }
     }
 }

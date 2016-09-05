@@ -1,0 +1,72 @@
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.UserModels
+@using Ninject.Infrastructure.Language
+@model UserForAccountModel
+@{
+    ViewBag.Title = "View";
+}
+
+<div class="row accountUser">
+    <div class="col-md-3">
+        @Html.Raw("<img class='userPhoto' src=\"data:image/jpeg;base64,"
+                              + Convert.ToBase64String(@Model.Photo) + "\" />")
+        <a href="@Url.Action("Edit","User")" data-toggle="tooltip" title="Settings!"><span class="glyphicon glyphicon-cog"></span></a>
+        <div class="row"><a  href=@Url.Action("Create","Question") class="btn btn-default  btn-add-question btn-block" >Add Question</a></div>
+    </div>
+    <div class="col-md-3">
+        <div class="row">
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td>@Model.FirstName</td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>@Model.LastName</td>
+                </tr>
+                <tr>
+                    <td>Birthday:</td>
+                    <td>@Model.Birthday.ToString("dd-MM-yyyy")</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel-group" id="accordion">
+            @{
+                var group = Model.Questions.GroupBy(u => u.Category).Select(grp => new { Category = grp.Key, Questions = grp.ToEnumerable() });
+                int i = 1;
+                foreach (var item in group)
+                {
+                    var collaps = "collapse" + i++;
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href='#@collaps'>
+                            @item.Category.Name
+                        </a>
+                    </h4>
+                </div>
+                <div id="@collaps" class="panel-collapse collapse ">
+                    <div class="panel-body">
+                        <ul>
+                            @foreach (var question in item.Questions)
+                                    {
+                                    <li>@question.Question_ <a href="@Url.Action("Edit", "Comment", new {questionId = question.Id})">Comments <span class="badge">@question.Comments.Count</span></a><br />@Html.ActionLink("Delete", "Delete", "Question", new { id = question.Id }, null)</li>
+                                    }
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Account {
+    @Styles.Render("~/Content/account")
+}

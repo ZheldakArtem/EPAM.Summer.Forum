@@ -13,7 +13,9 @@ namespace BLL.Interface.Services
         void DeleteComment(int commentId);
         void UpdateComment(Comment comment);
         IEnumerable<Comment> GetCommentsOfUser(int userId);
-        IEnumerable<Comment> GetCommentsOnQuestion(int questionId);
+        IEnumerable<Comment> GetCommentsByQuestionId(int questionId);
         IEnumerable<Comment> GetAllComments();
+        Comment GetCommentById(int commentId);
+        void UpdateGroupComment(int questionId,int[] commentId);
     }
 }

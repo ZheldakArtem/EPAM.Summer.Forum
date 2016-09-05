@@ -28,4 +28,24 @@
 
 $(document).ready(function () {
     $('#role').multiselect();
+
+    $('#json').on('click', function (e) {
+        e.preventDefault();
+        var data = "af";
+        $.ajax({
+            type: 'POST',
+            url: '../Account/Json',
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (data) {
+                alert(data.Name);
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    });
 });
+
+

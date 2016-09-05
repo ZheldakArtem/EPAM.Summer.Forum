@@ -1,11 +1,11 @@
 ﻿using System.Web;
 using System.Web.Optimization;
+using EPAM.SUMMER.FORUM.ZHELDAK.Controllers;
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK
 {
     public class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -23,6 +23,8 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css", "~/Content/bootstrap-multiselect.css"));
+
+            bundles.Add(new StyleBundle("~/Content/account").Include("~/Content/account.css"));
         }
     }
 }

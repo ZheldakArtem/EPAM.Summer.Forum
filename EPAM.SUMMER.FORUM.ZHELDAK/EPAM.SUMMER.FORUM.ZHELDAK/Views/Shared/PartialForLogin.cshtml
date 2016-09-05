@@ -1,13 +1,12 @@
 ﻿
 @if (Request.IsAuthenticated)
 {
-    @Html.AntiForgeryToken()
     <ul class="nav navbar-nav navbar-right">
         @if (User.IsInRole("admin"))
         {
             <li> @Html.ActionLink("Admin's Page", "Admin", "Admin")</li>
         }
-        <li>@Html.ActionLink(User.Identity.Name, "MainPage", "Category")</li>
+        <li>@Html.ActionLink(User.Identity.Name, "AccountPage", "Account")</li>
         <li><a href="@Url.Action("LogOff", "Account")"><span class="glyphicon glyphicon-log-out"></span> Login Off</a></li>
     </ul>
 }

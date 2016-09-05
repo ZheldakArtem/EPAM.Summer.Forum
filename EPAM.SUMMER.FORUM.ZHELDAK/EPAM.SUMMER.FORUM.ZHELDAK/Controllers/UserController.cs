@@ -1,111 +1,121 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Security;
+using BLL.Interface.Services;
+using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers;
+using EPAM.SUMMER.FORUM.ZHELDAK.Providers;
+using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.UserModels;
 using ORM;
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
-        private EntityModel db = new EntityModel();
+        private readonly IUserService _userService;
 
-        // GET: User
-        public ActionResult Index()
+        public UserController(IUserService userService)
         {
-            return View(db.Users.ToList());
+            _userService = userService;
         }
-        // GET: User/Create
-        public ActionResult Create()
+        public ActionResult Edit()
         {
-            return View();
-        }
+            var user = _userService.GetByEmail(User.Identity.Name);
 
-        // POST: User/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Photo,Birthday,Email,Password")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(user);
-        }
-
-        // GET: User/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(user.ToUserEditModel());
         }
 
-        // POST: User/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Photo,Birthday,Email,Password")] User user)
+        public ActionResult Edit(UserEditModel models, HttpPostedFileBase uploadImage)
         {
-            if (ModelState.IsValid)
+
+            byte[] imageData;
+
+            if (uploadImage != null)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                models.MimeType = uploadImage.ContentType;
+                models.Photo = imageData;
             }
-            return View(user);
+           
+            models.Email = User.Identity.Name;
+            models.NewPassword = Crypto.HashPassword(models.NewPassword);
+            _userService.UpdateUser(models.ToUser());
+
+            return RedirectToAction("AccountPage", "Account");
         }
 
-        // GET: User/Delete/5
-        public ActionResult Delete(int? id)
+
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    User user = db.Users.Find(id);
+        //    if (user == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(user);
+        //}
+
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    User user = db.Users.Find(id);
+        //    db.Users.Remove(user);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        public ActionResult CheckEmail(string email)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
+            if (email == User.Identity.Name)
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            if (_userService.GetAllUsers().Any(u => u.Email.Equals(email)))
+                return Json(false, JsonRequestBehavior.AllowGet);
+
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: User/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult CheckOldPassword(string oldPassword)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var user = _userService.GetByEmail(User.Identity.Name);
+
+            if (Crypto.VerifyHashedPassword(user.Password, oldPassword))
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult GetPhoto(int userId)
         {
-            if (disposing)
+            var user = _userService.GetUserById(userId);
+
+            if (user != null)
             {
-                db.Dispose();
+                return File(user.Photo,user.MimeType);
             }
-            base.Dispose(disposing);
+
+            return null;
         }
     }
 }

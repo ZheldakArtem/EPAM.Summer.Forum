@@ -1,1 +1,51 @@
-﻿
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.ComentsModels
+@using Ninject.Infrastructure.Language
+@model IEnumerable<CommentForAdminModel>
+
+<table class="table">
+    <tr>
+        <th class="no-border" style="color: #428bca;">Delete Comment</th>
+        <th class="no-border"></th>
+        <th class="no-border"></th>
+        <th class="no-border"></th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayName("Question")
+        </th>
+        <th>
+            @Html.DisplayName("Comment")
+        </th>
+
+        <th>
+            @Html.DisplayName("Date Of comment")
+        </th>
+        <th>
+            Delete
+        </th>
+    </tr>
+    @{
+        var group =
+            Model.GroupBy(u => u.Question)
+                .Select(grp => new { Question = grp.Key, Comments = grp.ToEnumerable() });
+        foreach (var item in group)
+        {
+            var rowspan = item.Comments.Count() + 1;
+            <tr>
+                <td rowspan=@rowspan>@item.Question</td>
+
+                @foreach (var comment in item.Comments)
+                {
+                <tr>
+                    <td>@comment.Comment</td>
+                    <td>@comment.DateOfComment</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Comment", new { id = comment.Id }, null)</td>
+                </tr>
+                }
+
+
+                </tr>
+        }
+    }
+</table>
+

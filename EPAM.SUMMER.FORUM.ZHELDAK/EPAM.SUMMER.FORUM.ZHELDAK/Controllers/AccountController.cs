@@ -1,18 +1,13 @@
-﻿using DAL.Interface.Repository;
-using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels;
+﻿using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using System.Web.UI.WebControls;
-using BLL.Interface;
 using BLL.Interface.Services;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers;
 using EPAM.SUMMER.FORUM.ZHELDAK.Providers;
-using ORM;
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 {
@@ -20,7 +15,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
-
+        private const int Maxyears = 100;
         public AccountController(IUserService service)
         {
             _userService = service;
@@ -29,8 +24,6 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            var type = HttpContext.User.GetType();
-            var iden = HttpContext.User.Identity.GetType();
             ViewBag.ReturnUrl = returnUrl;
 
             return View();
@@ -53,12 +46,14 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
                 FormsAuthentication.SetAuthCookie(viewModel.Email, viewModel.RememberMe);
                 if (Url.IsLocalUrl(returnUrl))
                     return Redirect(returnUrl);
+
                 return RedirectToAction("MainPage", "Category");
             }
             ModelState.AddModelError("", "Incorrect login or password");
 
             return View(viewModel);
         }
+
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -67,26 +62,25 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Register(UserViewModel models, HttpPostedFileBase uploadImage)
+        public ActionResult Register(UserRegisterViewModel models, HttpPostedFileBase uploadImage)
         {
-            var anyUser = _userService.GetAllUsers().Any(u => u.Email.Contains(models.Email));
-
-            if (anyUser)
+            var user = _userService.GetAllUsers().Any(u => u.Email.Equals(models.Email));
+            if (user)
             {
                 ModelState.AddModelError("", "User whith this address already registered.");
                 return View(models);
             }
 
-            if (ModelState.IsValid && uploadImage != null)
+            if (models.Birthday > DateTime.Now || models.Birthday < DateTime.Now.AddYears(-60))
             {
-                byte[] imageData = null;
-                //read the transferred file in byte array
-                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
-                {
-                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
-                }
-                // installation of an array of bytes
-                models.Photo = imageData;
+                ModelState.AddModelError("", "Incorrect date birthday.");
+                return View(models);
+            }
+
+            if (ModelState.IsValid)
+            {
+                SelectPhoto(models, uploadImage);
+
                 var membershipUser = ((CustomMembershipProvider)Membership.Provider)
                      .CreateUser(models.ToUser());
                 if (membershipUser != null)
@@ -94,16 +88,76 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
                     FormsAuthentication.SetAuthCookie(models.Email, false);
                     return RedirectToAction("MainPage", "Category");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Error registration.");
-                }
+                ModelState.AddModelError("", "Error registration.");
+
                 return View(models);
             }
 
             return View(models);
         }
 
+        public ActionResult AccountPage()
+        {
+            var user = _userService.GetByEmail(HttpContext.User.Identity.Name);
+            return View(user.ToUserForAccountModel());
+        }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public JsonResult CheckEmail(string email)
+        {
+            var anyUser = _userService.GetAllUsers().Any(u => u.Email.Equals(email));
+
+            return Json(!anyUser, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public JsonResult CheckBirthday(string birthday)
+        {
+            DateTime parsedDate;
+
+            if (!DateTime.TryParse(birthday, out parsedDate))
+            {
+                return Json("Incorrect date format.(dd.mm.yyyy)",
+                    JsonRequestBehavior.AllowGet);
+            }
+            if (parsedDate < DateTime.Now.AddYears(-Maxyears) || parsedDate > DateTime.Now)
+            {
+                return Json("Incorrect date.",
+                    JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// The method sets the user's photos.
+        /// </summary>
+        private void SelectPhoto(UserRegisterViewModel models, HttpPostedFileBase uploadImage)
+        {
+            byte[] imageData;
+            if (ReferenceEquals(uploadImage, null))
+            {
+                var filePath = Server.MapPath("~/fonts/NoPhoto.jpg");
+                using (Stream fstream = System.IO.File.OpenRead(filePath))
+                {
+                    using (var binaryReader = new BinaryReader(fstream))
+                    {
+                        imageData = binaryReader.ReadBytes((int)fstream.Length);
+                    }
+                }
+                models.MimeType = "image/jpeg";
+            }
+            else
+            {
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                models.MimeType = uploadImage.ContentType;
+            }
+
+            models.Photo = imageData;
+        }
     }
 }

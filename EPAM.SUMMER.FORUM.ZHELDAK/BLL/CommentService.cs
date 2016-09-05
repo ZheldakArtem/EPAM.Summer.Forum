@@ -21,7 +21,7 @@ namespace BLL
         }
         public void CreateComment(Comment comment)
         {
-           _commentRepository.Create(comment);
+            _commentRepository.Create(comment);
             _uow.Commit();
         }
 
@@ -43,7 +43,7 @@ namespace BLL
             return comments;
         }
 
-        public IEnumerable<Comment> GetCommentsOnQuestion(int questionId)
+        public IEnumerable<Comment> GetCommentsByQuestionId(int questionId)
         {
             var comments = _commentRepository.GetAll().Where(c => c.QuestionId == questionId);
 
@@ -52,8 +52,42 @@ namespace BLL
 
         public void UpdateComment(Comment comment)
         {
-           _commentRepository.Update(comment);
+            _commentRepository.Update(comment);
             _uow.Commit();
+        }
+
+        public Comment GetCommentById(int commentId)
+        {
+            return _commentRepository.GetById(commentId);
+        }
+
+        public void UpdateGroupComment(int questionId, int[] commentId)
+        {
+            var comments = GetCommentsByQuestionId(questionId).ToArray();
+
+            if (ReferenceEquals(commentId, null))
+            {
+                for (int i = 0; i < comments.Length; i++)
+                {
+                    comments[i].IsRight = false;
+                    UpdateComment(comments[i]);
+                }
+                return;
+            }
+
+            for (int i = 0; i < comments.Length; i++)
+            {
+                for (int j = 0; j < commentId.Length; j++)
+                {
+                    if (comments[i].Id == commentId[j])
+                    {
+                        comments[i].IsRight = true;
+                        break;
+                    }
+                    comments[i].IsRight = false;
+                }
+            }
+
         }
     }
 }

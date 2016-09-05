@@ -21,9 +21,18 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Admin", "Admin")
-        </div>
+            <input type="submit" value="Delete" class="btn btn-default"/> |
+
+             @if (User.IsInRole("admin"))
+             {
+                  @Html.ActionLink("Back to Admin's Page", "Admin", "Admin")
+             }
+   
+            @if (User.IsInRole("user"))
+            {
+                @Html.ActionLink("Back", "AccountPage", "Account")
+            }
+         </div>
     }
 </div>
 

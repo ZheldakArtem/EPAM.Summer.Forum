@@ -17,8 +17,10 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
     {
         private readonly IQuestionService _questionService;
         private readonly IUserService _userService;
-        public QuestionController(IQuestionService serviceQuestion, IUserService userService)
+        private readonly ICategoryService _categoryService;
+        public QuestionController(IQuestionService serviceQuestion, IUserService userService, ICategoryService categoryService)
         {
+            _categoryService = categoryService;
             _questionService = serviceQuestion;
             _userService = userService;
         }
@@ -31,11 +33,11 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
             ViewBag.Category = categoryName;
             ViewBag.CategoryId = categoryId;
-            
-            IEnumerable<QuestionViewModel> questionPerPages = questions.Skip((page - 1)*pageSize).Take(pageSize);
-            PageInfo pageInfo = new PageInfo {PageNumber = page, PageSize = pageSize, TotalItems = questions.Count()};
-            IndexViewModel<QuestionViewModel> ivm= new IndexViewModel<QuestionViewModel> {PageInfo = pageInfo,Entities= questionPerPages };
-            
+
+            IEnumerable<QuestionViewModel> questionPerPages = questions.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = questions.Count() };
+            IndexViewModel<QuestionViewModel> ivm = new IndexViewModel<QuestionViewModel> { PageInfo = pageInfo, Entities = questionPerPages };
+
             return View(ivm);
         }
 
@@ -45,7 +47,8 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         {
             ViewBag.Question = _questionService.GetQuestionById(questionId).ToQuestionViewModel().Question;
             ViewBag.QuestionId = questionId;
-            ViewBag.UserId = _userService.GetByEmail(HttpContext.User.Identity.Name).Id;
+            ViewBag.Sender = _questionService.GetQuestionById(questionId).User;
+            ViewBag.CurrentUser = _userService.GetByEmail(User.Identity.Name);
 
             return View(GetCommentsOnQuestion(questionId));
         }
@@ -55,11 +58,11 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         {
             var comments = _questionService.GetQuestionById(questionId).Comments.Select(c => new CommentsOnQuestionModel()
             {
-                IdComment = c.Id,
+                UserId=c.UserId,
+                CommentId = c.Id,
                 IsRight = c.IsRight,
                 FirstName = c.User.FirstName,
                 LastName = c.User.LastName,
-                Photo = c.User.Photo,
                 Comment = c.Comment_,
                 DateOfComment = c.DataOfComment
             });
@@ -88,7 +91,37 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         {
             _questionService.DeleteQuestion(id);
 
-            return RedirectToAction("Admin", "Admin");
+            if (HttpContext.User.Identity.Name == "admin")
+                return RedirectToAction("Admin", "Admin");
+
+            return RedirectToAction("AccountPage", "Account");
+        }
+
+        public ActionResult Create()
+        {
+            var categories = _categoryService.GetAllCategories();
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(QuestionViewModel questionViewModel)
+        {
+            var user = _userService.GetByEmail(User.Identity.Name);
+            if (ModelState.IsValid)
+            {
+                questionViewModel.UserId = user.Id;
+                _questionService.CreateQuestion(questionViewModel.ToQuestion());
+
+                return RedirectToAction("AccountPage", "Account");
+            }
+
+            var categories = _categoryService.GetAllCategories();
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
+
+            return View(questionViewModel);
         }
     }
 }

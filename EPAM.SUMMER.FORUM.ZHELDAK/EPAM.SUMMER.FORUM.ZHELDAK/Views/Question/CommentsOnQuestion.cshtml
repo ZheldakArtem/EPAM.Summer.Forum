@@ -2,18 +2,17 @@
 @model IEnumerable<CommentsOnQuestionModel>
 
 <div class="col-md-6 col-md-offset-3 ">
-    <h4 class="text-center">@ViewBag.Question</h4>
+    <div class="row"><small>@ViewBag.Sender.FirstName @ViewBag.Sender.LastName</small></div>
+    <h4 class="text-justify question">@ViewBag.Question</h4>
 </div>
 
-
 <div class="row">
-
     <div class="col-md-8 col-md-offset-2" id="comment-container">
         @foreach (var item in Model)
         {
             <div class="row">
                 <div class="col-md-1">
-                    <span class="glyphicon comment  @if (item.IsRight != null && item.IsRight == true)
+                    <span class="glyphicon comment  @if (item.IsRight)
                                                     {
                                                         @: glyphicon-thumbs-up
                                                     }"></span>
@@ -22,10 +21,11 @@
                     <div class="row">
                         <h6>@item.FirstName @item.LastName</h6>
                     </div>
-                    @Html.Raw("<img style='width:130px; height:110px; border-radius:15px;' src=\"data:image/jpeg;base64,"
-                              + Convert.ToBase64String(item.Photo) + "\" />")
+                    <img src="@Url.Action("GetPhoto", "User", new {item.UserId})" style="width:130px; height:110px;  border-radius:15px;" />
+                    @*@Html.Raw("<img style='width:130px; height:110px; border-radius:15px;' src=\"data:image/jpeg;base64,"
+                              + Convert.ToBase64String(item.Photo) + "\" />")*@
                 </div>
-                <div class="col-md-5 ">
+                <div class="col-md-7 ">
                     <div class="textComment">
                         @item.Comment
                     </div>
@@ -36,12 +36,12 @@
             </div>
         }
     </div>
-  </div>
+</div>
 <div class="row">
     @using (Ajax.BeginForm("Create", "Comment", new AjaxOptions { InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comment-container" }))
     {
         @Html.AntiForgeryToken()
-        <input type="hidden" name="UserId" value=@ViewBag.UserId />
+        <input type="hidden" name="UserId" value=@ViewBag.CurrentUser.Id />
         <input type="hidden" name="QuestionId" value=@ViewBag.QuestionId />
         <textarea class="form-control comment-area" rows="3" id="comment" name="comment"></textarea>
         <input type="submit" class="btn-comment" value="ADD" />

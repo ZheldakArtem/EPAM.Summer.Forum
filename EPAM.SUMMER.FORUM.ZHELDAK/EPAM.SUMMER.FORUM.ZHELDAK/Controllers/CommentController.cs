@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BLL.Interface.Services;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels;
+using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.ComentModels;
 using ORM;
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
@@ -36,18 +37,63 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
             _commentService.CreateComment(comment.ToComment());
             var newComment = _commentService.GetAllComments().Last();
 
-            var viewComment = new CommentsOnQuestionModel()
-            {
-                IdComment = newComment.Id,
-                Comment = newComment.Comment_,
-                DateOfComment = newComment.DataOfComment,
-                FirstName = newComment.User.FirstName,
-                IsRight = newComment.IsRight,
-                LastName = newComment.User.LastName,
-                Photo = newComment.User.Photo
-            };
+            var viewComment = newComment.ToCommentOnQuestionModel();
 
             return PartialView("PartialComments", viewComment);
         }
+
+        public ActionResult Edit(int? questionId)
+        {
+            if (questionId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.QuestionId = questionId;
+            var comment = _commentService.GetCommentsByQuestionId((int)questionId);
+            if (ReferenceEquals(comment, null))
+            {
+                return HttpNotFound();
+            }
+            return View(comment.Select(c => c.ToCommentForAccountModel()));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int questionId, int[] commentId = null)
+        {
+            if (ModelState.IsValid)
+            {
+                _commentService.UpdateGroupComment(questionId, commentId);
+               return RedirectToAction("AccountPage", "Account");
+            }
+
+            return RedirectToAction("Edit", "Comment", new { questionId });
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var comment = _commentService.GetCommentById((int)id);
+            if (ReferenceEquals(comment, null))
+            {
+                return HttpNotFound();
+            }
+            return View(comment.ToCommentForAdminModel());
+        }
+       
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            _commentService.DeleteComment(id);
+
+            return RedirectToAction("Admin", "Admin");
+        }
+
     }
 }

@@ -1,0 +1,65 @@
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.UserModels
+@model UserEditModel
+@{
+    ViewBag.Title = "Edit Account";
+}
+<div class="text-center"> <h4>Edit Account</h4></div>
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.UserId)
+    @Html.HiddenFor(m=>m.Photo)
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.FirstName, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.LastName, null, new { @class = "text-danger" })
+    </div>
+   
+    <div class="form-group">
+        @Html.LabelFor(m => m.Birthday)
+        @Html.EditorFor(m => m.Birthday, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Birthday, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.OldPassword)
+        @Html.EditorFor(m => m.OldPassword, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.OldPassword, null, new { @class = "text-danger" })
+        
+       
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewPassword)
+        @Html.EditorFor(m => m.NewPassword, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.NewPassword, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group ">
+        <label>Your photo</label>
+        <div class="input-group">
+            <label class="input-group-btn">
+                <span class="btn btn-primary">
+                    Browse… <input type="file" name="uploadImage" style="display: none;">
+                </span>
+            </label>
+            <input type="text" class="form-control" style="width: 194px" readonly="">
+        </div>
+        <span class="help-block">
+            Try selecting one photo
+        </span>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-default" value="Save" />|@Html.ActionLink("Back","AccountPage","Account")
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

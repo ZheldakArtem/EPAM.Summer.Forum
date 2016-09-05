@@ -1,4 +1,5 @@
-﻿@model ORM.Comment
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.ComentsModels
+@model CommentForAdminModel
 
 @{
     ViewBag.Title = "Delete";
@@ -6,59 +7,17 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Comment</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Question.Question_)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Question.Question_)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Comment_)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Comment_)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataOfComment)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataOfComment)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsRight)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsRight)
-        </dd>
-
-    </dl>
-
+<h3>Are you sure you want to delete comment?</h3>
+<div class="row">
+    <div class="col-md-8 col-lg-offset-2">@Model.Comment</div>
+</div>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(m=>m.Id)
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back","Admin", "Admin")
         </div>
     }
-</div>
+

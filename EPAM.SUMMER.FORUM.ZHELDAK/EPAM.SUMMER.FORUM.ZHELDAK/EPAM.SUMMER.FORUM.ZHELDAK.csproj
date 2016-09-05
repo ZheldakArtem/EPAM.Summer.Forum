@@ -154,6 +154,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomDateAttribute.cs" />
     <Compile Include="Infrastructure\Helpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\Mappers\Mappers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
@@ -162,31 +163,36 @@
     <Compile Include="Providers\CustomMembershipProvider.cs" />
     <Compile Include="Providers\CustomRoleProvider.cs" />
     <Compile Include="ViewModels\CategoryModels\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\ComentsModels\CommentsOnQuestionModel.cs" />
-    <Compile Include="ViewModels\ComentsModels\CommentViewModel.cs" />
+    <Compile Include="ViewModels\ComentModels\CommentForAccountModel.cs" />
+    <Compile Include="ViewModels\ComentModels\CommentForAdminModel.cs" />
+    <Compile Include="ViewModels\ComentModels\CommentsOnQuestionModel.cs" />
+    <Compile Include="ViewModels\ComentModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\LogOnViewModel.cs" />
     <Compile Include="ViewModels\QuestionModels\QuestionForAdminModel.cs" />
     <Compile Include="ViewModels\QuestionModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\UserModels\UserEditModel.cs" />
+    <Compile Include="ViewModels\UserModels\UserForAccountModel.cs" />
     <Compile Include="ViewModels\UserModels\UserForAdminModel.cs" />
-    <Compile Include="ViewModels\UserModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\UserModels\UserRegisterModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Forum.mdf" />
     <Content Include="App_Data\Forum_log.ldf">
       <DependentUpon>Forum.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\account.css" />
     <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\Zabor.jpg" />
+    <Content Include="fonts\Back.jpg" />
+    <Content Include="fonts\NoPhoto.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\forRegister.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -197,10 +203,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -225,15 +229,16 @@
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Shared\PartialCategories.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Admin\EditRole.cshtml" />
     <Content Include="Views\Shared\PartialUsers.cshtml" />
     <Content Include="Views\Shared\PartialQuestions.cshtml" />
     <Content Include="Views\Admin\AdminPage.cshtml" />
     <Content Include="Views\Question\Delete.cshtml" />
     <Content Include="Views\Shared\PartialCommentForAdmin.cshtml" />
+    <Content Include="Views\Account\AccountPage.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

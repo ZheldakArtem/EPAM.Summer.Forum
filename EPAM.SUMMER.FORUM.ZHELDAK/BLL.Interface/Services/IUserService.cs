@@ -15,5 +15,6 @@ namespace BLL.Interface.Services
         User GetUser(int id);
         IEnumerable<User> GetAllUsers();
         User GetByEmail(string email);
+        User GetUserById(int userId);
     }
 }

@@ -1,4 +1,5 @@
-﻿@model EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.UserViewModel
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
+@model UserRegisterViewModel
 
 @{
     ViewBag.Title = "Register";
@@ -49,13 +50,13 @@
             <div class="input-group">
                 <label class="input-group-btn">
                     <span class="btn btn-primary">
-                        Browse… <input type="file" name="uploadImage" style="display: none;" multiple>
+                        Browse… <input type="file" name="uploadImage" style="display: none;">
                     </span>
                 </label>
                 <input type="text" class="form-control" style="width: 194px" readonly="">
             </div>
             <span class="help-block">
-                Try selecting one file
+                Try selecting one photo
             </span>
         </div>
 

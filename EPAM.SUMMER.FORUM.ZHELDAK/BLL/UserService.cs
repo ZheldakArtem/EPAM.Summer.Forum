@@ -51,6 +51,9 @@ namespace BLL
             return _userRepository.GetById(id);
         }
 
-       
+        public User GetUserById(int userId)
+        {
+           return _userRepository.GetById(userId);
+        }
     }
 }

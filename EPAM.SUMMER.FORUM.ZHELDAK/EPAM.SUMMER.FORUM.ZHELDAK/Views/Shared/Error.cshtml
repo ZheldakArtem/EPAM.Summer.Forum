@@ -1,13 +1,36 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
-</body>
-</html>
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "Error report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Application error info</h3>
+<p>
+    There was exception type: @Model.Exception.GetType()
+</p>
+<p>
+    This exception occur during execute
+    <br/>
+    Controller: @Model.ControllerName
+    <br/>
+    Action: @Model.ActionName
+</p>
+<div>
+    Exception message:
+    @{
+        var ex = Model.Exception;
+        <ul>
+            @while (ex != null)
+            {
+                <li>@ex.Message</li>
+                ex = ex.InnerException;
+            }
+        </ul>
+    }
+</div>
+@if (HttpContext.Current.IsDebuggingEnabled)
+{
+    <p style="text-align: left;">
+        Exception stack trace:<br/>
+        @Model.Exception.StackTrace
+    </p>
+}

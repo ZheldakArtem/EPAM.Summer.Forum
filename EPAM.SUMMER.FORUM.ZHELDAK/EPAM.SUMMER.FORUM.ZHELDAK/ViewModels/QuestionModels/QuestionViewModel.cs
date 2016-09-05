@@ -12,12 +12,18 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
     {
         [HiddenInput]
         public int Id { get; set; }
+        public int UserId { get; set; }
+        public int CategoryId { get; set; }
 
-        [Required(ErrorMessage = "Enter the question")]
+        [StringLength(50, ErrorMessage = "The question must contain at least 6 characters", MinimumLength = 6)]
         [DisplayName("Enter question")]
         public string Question { get; set; }
-        public DateTime? LastComment { get; set; }
+
         public int CommentsCount { get; set; }
+
+        public DateTime? LastComment { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime? DateOfQuestion { get; set; }
     }
 }

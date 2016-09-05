@@ -8,7 +8,7 @@ namespace ORM
 
     public partial class Question
     {
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Question()
         {
             Comments = new HashSet<Comment>();
@@ -27,6 +27,7 @@ namespace ORM
 
         public virtual Category Category { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual User User { get; set; }

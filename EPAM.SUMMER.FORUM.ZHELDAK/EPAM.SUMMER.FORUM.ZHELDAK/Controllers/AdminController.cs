@@ -92,7 +92,8 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
         public ActionResult CommentForAdmin()
         {
-            return PartialView("")
+            var comment = _commentService.GetAllComments().Select(c=>c.ToCommentForAdminModel());
+            return PartialView("PartialCommentForAdmin", comment);
         }
     }
 }

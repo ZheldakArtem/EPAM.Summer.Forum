@@ -18,8 +18,8 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Providers
             => (IRoleService)DependencyResolver.Current.GetService(typeof(IRoleService));
         public override bool IsUserInRole(string email, string roleName)
         {
-            User user = UserService.GetAllUsers().FirstOrDefault(u => u.Email == email);
-            Role role = RoleService.GetAll().FirstOrDefault(r => r.Name == roleName);
+            var user = UserService.GetByEmail(email);
+            var role = RoleService.GetAll().FirstOrDefault(r => r.Name == roleName);
 
             if (user == null || role == null) return false;
 
@@ -32,7 +32,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Providers
         public override string[] GetRolesForUser(string email)
         {
 
-            var user = UserService.GetAllUsers().FirstOrDefault(c => c.Email == email);
+            var user = UserService.GetByEmail(email);
             if (ReferenceEquals(user, null))
                 throw new ArgumentException("The user with the mail does't exist ");
 

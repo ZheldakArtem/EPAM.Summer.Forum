@@ -1,0 +1,35 @@
+﻿.userPhoto {
+    
+    max-width: 250px;
+    margin-top: 10px;
+}
+
+.accountUser td:first-child {
+    color: #798d92;
+}
+
+.accountUser table {
+    margin-top: 10px;
+}
+.accountUser td {
+    border-bottom: 1px solid #1c1a1d;
+}
+
+.accountUser td:last-child {
+    color: #a7a7ad;
+    text-align: right;
+}
+
+
+#accordion {
+    margin-top: 10px;
+}
+
+a.btn-add-question {
+        padding-left: 10px;
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 249px;
+    background-color: #222222;
+    color: aliceblue;
+}
