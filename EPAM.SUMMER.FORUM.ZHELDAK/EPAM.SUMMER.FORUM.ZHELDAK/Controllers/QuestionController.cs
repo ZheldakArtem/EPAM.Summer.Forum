@@ -13,6 +13,7 @@ using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Pagination;
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 {
+    [Authorize]
     public class QuestionController : Controller
     {
         private readonly IQuestionService _questionService;
@@ -40,8 +41,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
             return View(ivm);
         }
-
-        [Authorize]
+        
         [HttpGet]
         public ActionResult CommentsOnQuestion(int questionId)
         {
@@ -52,8 +52,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
             return View(GetCommentsOnQuestion(questionId));
         }
-
-
+        
         private IEnumerable<CommentsOnQuestionModel> GetCommentsOnQuestion(int questionId)
         {
             var comments = _questionService.GetQuestionById(questionId).Comments.Select(c => new CommentsOnQuestionModel()

@@ -18,14 +18,15 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         private const int Maxyears = 100;
         public AccountController(IUserService service)
         {
+           
             _userService = service;
         }
 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-
+           ViewBag.ReturnUrl = returnUrl;
+           
             return View();
         }
 

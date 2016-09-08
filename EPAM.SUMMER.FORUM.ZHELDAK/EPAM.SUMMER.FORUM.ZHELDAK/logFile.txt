@@ -1,0 +1,68 @@
+2016-09-07 21:33:31.7800|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 21:33:31
+2016-09-07 21:35:24.9123|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 21:35:24
+2016-09-07 21:36:33.3243|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 21:36:33
+2016-09-07 21:36:34.6534|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 21:36:34
+2016-09-07 21:36:34.7259|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 21:36:34
+2016-09-07 21:36:38.5200|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 21:36:38
+2016-09-07 21:36:50.2171|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 21:36:50
+2016-09-07 21:36:52.6269|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:36:52
+2016-09-07 21:36:52.6404|INFO|DAL.NLog.LogForum|Get all users. | 07.09.2016 21:36:52
+2016-09-07 21:36:54.4546|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:36:54
+2016-09-07 21:36:54.5958|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:36:54
+2016-09-07 21:36:54.6683|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:36:54
+2016-09-07 21:36:54.6977|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:36:54
+2016-09-07 21:36:54.7312|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:36:54
+2016-09-07 21:36:54.8548|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:36:54
+2016-09-07 21:36:54.8684|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:36:54
+2016-09-07 21:36:54.8684|INFO|DAL.NLog.LogForum|Get all questions. | 07.09.2016 21:36:54
+2016-09-07 21:36:55.7242|INFO|DAL.NLog.LogForum|Get all comments. | 07.09.2016 21:36:55
+2016-09-07 21:37:14.9241|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 21:37:14
+2016-09-07 21:37:24.4748|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 21:37:24
+2016-09-07 21:37:24.5803|INFO|DAL.NLog.LogForum|Create 'FOOTBALL' category. | 07.09.2016 21:37:24
+2016-09-07 21:37:25.8578|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 21:37:25
+2016-09-07 21:37:25.8934|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 21:37:25
+2016-09-07 21:37:25.9029|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:37:25
+2016-09-07 21:37:25.9169|INFO|DAL.NLog.LogForum|Get all users. | 07.09.2016 21:37:25
+2016-09-07 21:37:26.1192|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:37:26
+2016-09-07 21:37:26.1537|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:37:26
+2016-09-07 21:37:26.1795|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:37:26
+2016-09-07 21:37:26.1795|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:37:26
+2016-09-07 21:37:26.2031|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:37:26
+2016-09-07 21:37:26.2341|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:37:26
+2016-09-07 21:37:26.2501|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 21:37:26
+2016-09-07 21:37:26.2573|INFO|DAL.NLog.LogForum|Get all questions. | 07.09.2016 21:37:26
+2016-09-07 21:37:26.2573|INFO|DAL.NLog.LogForum|Get all comments. | 07.09.2016 21:37:26
+2016-09-07 22:45:04.7795|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 22:45:04
+2016-09-07 22:46:15.9653|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:46:15
+2016-09-07 22:46:17.2700|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 22:46:17
+2016-09-07 22:46:17.2840|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:46:17
+2016-09-07 22:46:19.6244|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:46:19
+2016-09-07 22:46:28.1628|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 22:46:28
+2016-09-07 22:46:29.4066|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 22:46:29
+2016-09-07 22:46:29.4206|INFO|DAL.NLog.LogForum|Get all users. | 07.09.2016 22:46:29
+2016-09-07 22:46:30.4924|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 22:46:30
+2016-09-07 22:46:31.0067|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 22:46:31
+2016-09-07 22:46:31.0307|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 22:46:31
+2016-09-07 22:46:31.0497|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 22:46:31
+2016-09-07 22:46:31.0968|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 22:46:31
+2016-09-07 22:46:31.3110|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 22:46:31
+2016-09-07 22:46:31.3270|INFO|DAL.NLog.LogForum|Get all roles. | 07.09.2016 22:46:31
+2016-09-07 22:46:31.3710|INFO|DAL.NLog.LogForum|Get all questions. | 07.09.2016 22:46:31
+2016-09-07 22:46:32.0034|INFO|DAL.NLog.LogForum|Get all comments. | 07.09.2016 22:46:32
+2016-09-07 22:46:42.0721|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 22:46:42
+2016-09-07 22:46:42.2329|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:46:42
+2016-09-07 22:46:43.6041|INFO|DAL.NLog.LogForum|Get all questions. | 07.09.2016 22:46:43
+2016-09-07 22:46:53.1218|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:46:53
+2016-09-07 22:47:01.8539|INFO|DAL.NLog.LogForum|Get question by id=1. | 07.09.2016 22:47:01
+2016-09-07 22:47:01.8739|INFO|DAL.NLog.LogForum|Get question by id=1. | 07.09.2016 22:47:01
+2016-09-07 22:47:01.8859|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:47:01
+2016-09-07 22:47:01.8999|INFO|DAL.NLog.LogForum|Get question by id=1. | 07.09.2016 22:47:01
+2016-09-07 22:47:02.1391|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:47:02
+2016-09-07 22:47:02.3952|INFO|DAL.NLog.LogForum|Get user by id=4. | 07.09.2016 22:47:02
+2016-09-07 22:47:02.4133|INFO|DAL.NLog.LogForum|Get user by id=6. | 07.09.2016 22:47:02
+2016-09-07 22:47:18.8032|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:47:18
+2016-09-07 22:47:18.8603|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:47:18
+2016-09-07 22:47:26.8058|INFO|DAL.NLog.LogForum|Get all comments. | 07.09.2016 22:47:26
+2016-09-07 22:47:33.6210|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:47:33
+2016-09-07 22:47:44.5365|INFO|DAL.NLog.LogForum|Get all categories. | 07.09.2016 22:47:44
+2016-09-07 22:47:44.5975|INFO|DAL.NLog.LogForum|Get role by predicate =>c => (c.Email == value(BLL.UserService+<>c__DisplayClass7_0).email). | 07.09.2016 22:47:44

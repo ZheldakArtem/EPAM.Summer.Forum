@@ -7,9 +7,19 @@ using ORM;
 
 namespace DAL.Interface.Repository
 {
-   public interface IUnitOfWork:IDisposable
+    /// <summary>
+    /// The interface provides access to repositories through a single property and Commit method and determines the overall context
+    /// </summary>
+    public interface IUnitOfWork:IDisposable
    {
+        /// <summary>
+        /// The property returns the context.
+        /// </summary>
         EntityModel Context { get; }
+
+        /// <summary>
+        /// Save all changes of the context.
+        /// </summary>
         void Commit();
    }
 }

@@ -184,10 +184,13 @@
     <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\error404.css" />
+    <Content Include="Errors\Error404.htm" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\Back.jpg" />
-    <Content Include="fonts\NoPhoto.jpg" />
+    <Content Include="Image\404-page.jpg" />
+    <Content Include="Image\Back.jpg" />
+    <Content Include="Image\NoPhoto.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap-multiselect.js" />

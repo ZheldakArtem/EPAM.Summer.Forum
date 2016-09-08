@@ -17,7 +17,6 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
-
         public CommentController(ICommentService commentService)
         {
             _commentService = commentService;
@@ -64,7 +63,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
             if (ModelState.IsValid)
             {
                 _commentService.UpdateGroupComment(questionId, commentId);
-               return RedirectToAction("AccountPage", "Account");
+                return RedirectToAction("AccountPage", "Account");
             }
 
             return RedirectToAction("Edit", "Comment", new { questionId });
@@ -84,7 +83,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
             }
             return View(comment.ToCommentForAdminModel());
         }
-       
+
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

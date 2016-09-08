@@ -3,6 +3,7 @@ using BLL.Interface;
 using BLL.Interface.Services;
 using DAL;
 using DAL.Interface.Repository;
+using DAL.NLog;
 using Ninject;
 using Ninject.Web.Common;
 using ORM;
@@ -30,6 +31,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK
             _kernel.Bind<IQuestionService>().To<QuestionService>().InRequestScope();
             _kernel.Bind<ICommentService>().To<CommentService>().InRequestScope();
             _kernel.Bind<ICategoryService>().To<CategoryService>().InRequestScope();
+            _kernel.Bind<ILogForum>().To<LogForum>().InSingletonScope();
             StartCalled = true;
         }
     }

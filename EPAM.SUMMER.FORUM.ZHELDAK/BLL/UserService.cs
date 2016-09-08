@@ -46,11 +46,6 @@ namespace BLL
           return  _userRepository.GetByPredicate(c => c.Email == email);
         }
 
-        public User GetUser(int id)
-        {
-            return _userRepository.GetById(id);
-        }
-
         public User GetUserById(int userId)
         {
            return _userRepository.GetById(userId);
