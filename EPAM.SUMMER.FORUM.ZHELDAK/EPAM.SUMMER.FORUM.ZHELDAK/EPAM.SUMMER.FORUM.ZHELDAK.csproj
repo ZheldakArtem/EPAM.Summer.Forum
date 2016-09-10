@@ -235,13 +235,14 @@
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Admin\EditRole.cshtml" />
     <Content Include="Views\Shared\PartialUsers.cshtml" />
-    <Content Include="Views\Shared\PartialQuestions.cshtml" />
+    <Content Include="Views\Shared\PartialQuestionsForAdmin.cshtml" />
     <Content Include="Views\Admin\AdminPage.cshtml" />
     <Content Include="Views\Question\Delete.cshtml" />
     <Content Include="Views\Shared\PartialCommentForAdmin.cshtml" />
     <Content Include="Views\Account\AccountPage.cshtml" />
     <Content Include="Views\Question\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Shared\PartialShowQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -276,7 +277,9 @@
       <Name>ORM</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Infrastructure\Show\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

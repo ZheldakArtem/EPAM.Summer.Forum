@@ -61,7 +61,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
            
-            var user = _userService.GetUser((int)id);
+            var user = _userService.GetUserById((int)id);
 
             if (user == null)
             {

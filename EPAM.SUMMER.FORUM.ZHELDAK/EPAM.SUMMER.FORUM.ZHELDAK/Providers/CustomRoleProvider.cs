@@ -48,7 +48,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Providers
         public void AddUserToRoles(int userId, string[] roleNames)
         {
 
-            var user = UserService.GetUser(userId);
+            var user = UserService.GetUserById(userId);
             user.Roles.Clear();
 
             if (ReferenceEquals(roleNames, null))

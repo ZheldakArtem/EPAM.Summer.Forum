@@ -1,0 +1,33 @@
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Pagination
+@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
+@using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Helpers
+@model IndexViewModel<QuestionViewModel>
+<div id="question-table">
+    <table class="table table-hover question">
+        <thead>
+            <tr>
+                <th>DESCRIPTION</th>
+                <th>COMMENTS</th>
+                <th>DATE OF QUESTION</th>
+                <th>LAST COMMENT</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Entities)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@item.Question, "CommentsOnQuestion", "Question", new { questionId = @item.Id }, null)</td>
+                    <td>@item.CommentsCount</td>
+                    <td>@item.DateOfQuestion</td>
+                    <td>@item.LastComment</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+</div>
+<div class="page-conteiner">
+
+    @Html.PageLinks(Model.PageInfo, p => Ajax.ActionLink(p.ToString(), "ShowQuestion","Question", new { page = p, categoryId = @ViewBag.CategoryId, categoryName = @ViewBag.Category }, new AjaxOptions { UpdateTargetId = "update" }).ToString())
+    @*@Html.PageLinks(Model.PageInfo, p => Url.Action("ShowQuestion", new {page = p, categoryId = @ViewBag.CategoryId, categoryName = @ViewBag.Category}))*@
+</div>

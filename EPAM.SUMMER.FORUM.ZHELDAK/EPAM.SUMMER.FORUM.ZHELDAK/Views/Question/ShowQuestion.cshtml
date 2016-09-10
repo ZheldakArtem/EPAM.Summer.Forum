@@ -15,30 +15,9 @@
         <h1 class="text-center">QUESTIONS</h1>
     </div>
 </div>
-<br /><br />
+<br/><br/>
 
-<table class="table  table-hover question">
-    <thead>
-    <tr>
-        <th>DESCRIPTION</th>
-        <th>COMMENTS</th>
-        <th>DATE OF QUESTION</th>
-        <th>LAST COMMENT</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.Entities)
-    {
-        <tr>
-            <td>@Html.ActionLink(@item.Question, "CommentsOnQuestion", "Question", new {questionId = @item.Id}, null)</td>
-            <td>@item.CommentsCount</td>
-            <td>@item.DateOfQuestion</td>
-            <td>@item.LastComment</td>
-        </tr>
-    }
-    </tbody>
-</table>
-<hr/>
-<div class="btn-group">
-    @Html.PageLinks(Model.PageInfo,p=>Url.Action("ShowQuestion",new {page=p,categoryId=@ViewBag.CategoryId, categoryName = @ViewBag.Category}))
+<div id="update">
+    @{ Html.RenderPartial("PartialShowQuestion", Model);}
+   
 </div>

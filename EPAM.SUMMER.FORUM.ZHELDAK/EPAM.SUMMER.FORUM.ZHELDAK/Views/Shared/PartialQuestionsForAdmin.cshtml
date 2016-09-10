@@ -1,0 +1,52 @@
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.QuestionModels
+@using Ninject.Infrastructure.Language
+@model IEnumerable<QuestionForAdminModel>
+
+
+<table class="table">
+    <tr >
+        <th class="no-border" style="color: #428bca;">Delete Question</th>
+        <th class="no-border"></th>
+        <th class="no-border"></th>
+        <th class="no-border"></th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayName("Category Name")
+        </th>
+        <th>
+            @Html.DisplayName("Question")
+        </th>
+
+        <th>
+            @Html.DisplayName("Date Of Question")
+        </th>
+        <th>
+            Delete
+        </th>
+    </tr>
+    @{
+        var group =
+            Model.GroupBy(u => u.CategoryName)
+                .Select(grp => new { CategoryName = grp.Key, questions = grp.ToEnumerable() });
+        foreach (var item in group)
+        {
+            var rowspan = item.questions.Count() + 1;
+            <tr>
+                <td rowspan=@rowspan>@item.CategoryName</td>
+
+                @foreach (var question in item.questions)
+                {
+                <tr>
+                    <td>@question.Question</td>
+                    <td>@question.DateOfQuestion</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Question", new { id = question.Id }, null)</td>
+                </tr>
+                }
+
+
+                </tr>
+        }
+    }
+</table>
+

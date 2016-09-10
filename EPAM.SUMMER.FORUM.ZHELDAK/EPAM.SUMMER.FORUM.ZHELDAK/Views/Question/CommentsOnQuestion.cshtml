@@ -22,8 +22,6 @@
                         <h6>@item.FirstName @item.LastName</h6>
                     </div>
                     <img src="@Url.Action("GetPhoto", "User", new {item.UserId})" style="width:130px; height:110px;  border-radius:15px;" />
-                    @*@Html.Raw("<img style='width:130px; height:110px; border-radius:15px;' src=\"data:image/jpeg;base64,"
-                              + Convert.ToBase64String(item.Photo) + "\" />")*@
                 </div>
                 <div class="col-md-7 ">
                     <div class="textComment">

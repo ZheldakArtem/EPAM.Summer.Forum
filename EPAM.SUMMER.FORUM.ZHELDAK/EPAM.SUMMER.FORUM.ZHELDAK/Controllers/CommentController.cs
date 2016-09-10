@@ -24,16 +24,16 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create()
+        public ActionResult Create(CommentViewModel commentViewModel)
         {
-            var comment = new CommentViewModel()
-            {
-                QuestionId = int.Parse(Request.Form["QuestionId"]),
-                UserId = int.Parse(Request.Form["UserId"]),
-                Comment = Request.Form["Comment"]
-            };
+            //var comment = new CommentViewModel()
+            //{
+            //    QuestionId = int.Parse(Request.Form["QuestionId"]),
+            //    UserId = int.Parse(Request.Form["UserId"]),
+            //    Comment = Request.Form["Comment"]
+            //};
 
-            _commentService.CreateComment(comment.ToComment());
+            _commentService.CreateComment(commentViewModel.ToComment());
             var newComment = _commentService.GetAllComments().Last();
 
             var viewComment = newComment.ToCommentOnQuestionModel();

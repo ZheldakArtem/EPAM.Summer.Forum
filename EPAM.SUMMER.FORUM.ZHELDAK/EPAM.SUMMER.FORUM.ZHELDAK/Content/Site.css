@@ -35,7 +35,7 @@ textarea {
         background-color: #222222;
         display: block;
         padding: 20px 14px;
-        color: white;
+        color: #b0b9b9;
         text-decoration: none;
         margin-bottom: 10px;
         text-transform: uppercase;
@@ -56,12 +56,19 @@ textarea {
     .question a {
         color: #b0b9b9;
         text-decoration: none;
-        display: block;
     }
 
-        .question a:hover {
-            color: black;
-        }
+    .question.table > tr:hover {
+        color: #b0b9b9;
+    }
+
+    .question tbody tr:hover {
+        color: black;
+    }
+
+    .question tr:hover a {
+        color: black;
+    }
 
 .comment {
     padding: 80px 30px !important;
@@ -136,3 +143,63 @@ h6.user-name {
     margin-left: 35px;
     width: 50%;
 }
+
+#question-table {
+    min-height: 300px;
+}
+
+.page-conteiner {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.btn-page {
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+    color: aliceblue;
+}
+
+
+
+    .btn-page a {
+        background-color: #99998a;
+        padding: 5px;
+        border-radius: 51%;
+        width: 28px;
+        display: block;
+        color: white;
+        text-decoration: none;
+    }
+
+        .btn-page a:hover {
+            background-color: #f5f5f5;
+            color: black;
+        }
+
+    .btn-page.disabled,
+    .btn-page[disabled] {
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: 0.65;
+    }
+
+.circle {
+    margin: 0 auto;
+    padding-top: 31px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #222222;
+}
+
+
+    .circle:active {
+        color: black;
+        background-color: white;
+        box-shadow: 0px 0px 30px rgba(111,110,110,1);
+    }

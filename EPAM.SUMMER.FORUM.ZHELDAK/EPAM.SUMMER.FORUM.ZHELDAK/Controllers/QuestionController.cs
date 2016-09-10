@@ -27,6 +27,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult ShowQuestion(int categoryId, string categoryName, int page = 1)
         {
             int pageSize = 3;
@@ -38,7 +39,10 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
             IEnumerable<QuestionViewModel> questionPerPages = questions.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = questions.Count() };
             IndexViewModel<QuestionViewModel> ivm = new IndexViewModel<QuestionViewModel> { PageInfo = pageInfo, Entities = questionPerPages };
-
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("PartialShowQuestion",ivm);
+            }
             return View(ivm);
         }
         
