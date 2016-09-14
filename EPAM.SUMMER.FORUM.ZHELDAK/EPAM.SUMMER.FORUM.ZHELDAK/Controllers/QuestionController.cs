@@ -28,24 +28,24 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult ShowQuestion(int categoryId, string categoryName, int page = 1)
+        public ActionResult ShowQuestion(string categoryName, int page = 1)
         {
-            int pageSize = 3;
-            var questions = _questionService.GetQuestionsByCategory(categoryId).Select(q => q.ToQuestionViewModel());
+            int pageSize = 2;
+            var questions = _questionService.GetQuestionsByCategory(categoryName).Select(q => q.ToQuestionViewModel());
 
-            ViewBag.Category = categoryName;
-            ViewBag.CategoryId = categoryId;
-
+            ViewBag.Category = categoryName.ToUpper();
+            
             IEnumerable<QuestionViewModel> questionPerPages = questions.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = questions.Count() };
             IndexViewModel<QuestionViewModel> ivm = new IndexViewModel<QuestionViewModel> { PageInfo = pageInfo, Entities = questionPerPages };
+
             if (Request.IsAjaxRequest())
             {
-                return PartialView("PartialShowQuestion",ivm);
+                return PartialView("PartialShowQuestion", ivm);
             }
             return View(ivm);
         }
-        
+
         [HttpGet]
         public ActionResult CommentsOnQuestion(int questionId)
         {
@@ -56,12 +56,12 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
             return View(GetCommentsOnQuestion(questionId));
         }
-        
+
         private IEnumerable<CommentsOnQuestionModel> GetCommentsOnQuestion(int questionId)
         {
             var comments = _questionService.GetQuestionById(questionId).Comments.Select(c => new CommentsOnQuestionModel()
             {
-                UserId=c.UserId,
+                UserId = c.UserId,
                 CommentId = c.Id,
                 IsRight = c.IsRight,
                 FirstName = c.User.FirstName,
