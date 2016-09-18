@@ -15,7 +15,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
         public int UserId { get; set; }
         public int CategoryId { get; set; }
 
-        [StringLength(50, ErrorMessage = "The question must contain at least 6 characters", MinimumLength = 6)]
+        [StringLength(1000, ErrorMessage = "The question should contain from 6 to 1000 characters.", MinimumLength = 6)]
         [DisplayName("Enter question")]
         public string Question { get; set; }
 

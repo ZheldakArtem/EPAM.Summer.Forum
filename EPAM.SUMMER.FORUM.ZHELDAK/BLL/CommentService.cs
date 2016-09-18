@@ -33,20 +33,27 @@ namespace BLL
 
         public IEnumerable<Comment> GetAllComments()
         {
-            return _commentRepository.GetAll();
+            var comments = _commentRepository
+                .GetAll();
+                
+            return comments;
         }
 
         public IEnumerable<Comment> GetCommentsOfUser(int userId)
         {
-            var comments = _commentRepository.GetAll().Where(c => c.UserId == userId);
+            var comments = _commentRepository
+                .GetAll()
+                .Where(c => c.UserId == userId);
 
             return comments;
         }
 
         public IEnumerable<Comment> GetCommentsByQuestionId(int questionId)
         {
-            var comments = _commentRepository.GetAll().Where(c => c.QuestionId == questionId);
-
+            var comments = _commentRepository
+                .GetAll()
+                .Where(c => c.QuestionId == questionId);
+              
             return comments;
         }
 

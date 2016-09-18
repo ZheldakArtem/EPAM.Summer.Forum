@@ -1,0 +1,20 @@
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
+@model IEnumerable<UserForAdminModel>
+
+@{
+    ViewBag.Title = "Questions";
+}
+<div class="row">
+    <ul class="nav nav-pills nav-justified">
+        <li>@Ajax.ActionLink("Categories", "CategoriesForAdmin", null, new AjaxOptions { UpdateTargetId = "update-admin" }, new { @class = "href-menu" })</li>
+        <li>@Ajax.ActionLink("Users", "UsersForAdmin", null, new AjaxOptions { UpdateTargetId = "update-admin" }, new { @class = "href-menu" })</li>
+        <li>@Ajax.ActionLink("Questions", "QuestionForAdmin", null, new AjaxOptions { UpdateTargetId = "update-admin" }, new { @class = "href-menu" })</li>
+        <li>@Ajax.ActionLink("Comments", "CommentForAdmin", null, new AjaxOptions { UpdateTargetId = "update-admin" }, new { @class = "href-menu" })</li>
+    </ul>
+</div>
+<br />
+<br />
+<br />
+<div class="row">
+    <div id="update-admin">@Html.Partial("PartialUsers",Model)</div>
+</div>

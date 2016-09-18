@@ -45,14 +45,19 @@ namespace BLL
 
         public IEnumerable<Question> GetUsersQuestions(int userId)
         {
-            var questions = _questionRepository.GetAll().Where(q => q.UserId == userId);
+            var questions = _questionRepository
+                .GetAll()
+                .Where(q => q.UserId == userId);
 
             return questions;
         }
 
         public IEnumerable<Question> GetQuestionsByCategory(int categoryId)
         {
-            var questions = _questionRepository.GetAll().Where(q => q.CategoryId == categoryId);
+            var questions = _questionRepository
+                .GetAll()
+                .Where(q => q.CategoryId == categoryId);
+             
 
             return questions;
         }
@@ -60,6 +65,15 @@ namespace BLL
        public Question GetQuestionById(int questionId)
         {
             return _questionRepository.GetById(questionId);
+        }
+
+        public IEnumerable<Question> GetQuestionsByCategory(string categoryName)
+        {
+            var questions = _questionRepository
+                .GetAll()
+                .Where(q => q.Category.Name.Equals(categoryName.ToUpper()));
+             
+            return questions;
         }
     }
 }

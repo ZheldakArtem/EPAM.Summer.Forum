@@ -28,14 +28,12 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.UserModels
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Old password")]
         [Remote("CheckOldPassword", "User", ErrorMessage = "Incorrect old password.")]
         [Required(ErrorMessage = "Enter your old password.")]
         public string OldPassword { get; set; }
 
         [DataType(DataType.Password)]
         [StringLength(50, ErrorMessage = "The password must contain at least 6 characters", MinimumLength = 6)]
-        [Display(Name = "New Password")]
         [Required(ErrorMessage = "Enter your new password.")]
         public string NewPassword { get; set; }
 

@@ -5,12 +5,13 @@
     ViewBag.Title = "View";
 }
 
-<div class="row accountUser">
+<div class="row account-user">
     <div class="col-md-3">
-        @Html.Raw("<img class='userPhoto' src=\"data:image/jpeg;base64,"
-                              + Convert.ToBase64String(@Model.Photo) + "\" />")
-        <a href="@Url.Action("Edit","User")" data-toggle="tooltip" title="Settings!"><span class="glyphicon glyphicon-cog"></span></a>
-        <div class="row"><a  href=@Url.Action("Create","Question") class="btn btn-default  btn-add-question btn-block" >Add Question</a></div>
+        <img class="" src="@Url.Action("GetPhoto", "User", new {Model.UserId})" style="width: 250px; border-radius: 15px;" />
+        <a href="@Url.Action("Edit", "User")" data-toggle="tooltip" title="Settings!"><span class="glyphicon glyphicon-cog"></span></a>
+        <div class="row">
+            <a href=@Url.Action("Create", "Question") class="btn btn-default  btn-add-question btn-block">Add Question</a>
+        </div>
     </div>
     <div class="col-md-3">
         <div class="row">
@@ -39,26 +40,27 @@
                 foreach (var item in group)
                 {
                     var collaps = "collapse" + i++;
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href='#@collaps'>
-                            @item.Category.Name
-                        </a>
-                    </h4>
-                </div>
-                <div id="@collaps" class="panel-collapse collapse ">
-                    <div class="panel-body">
-                        <ul>
-                            @foreach (var question in item.Questions)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href='#@collaps'>
+                                    @item.Category.Name
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="@collaps" class="panel-collapse collapse ">
+                            <div class="panel-body">
+                                <ul>
+                                    @foreach (var question in item.Questions)
                                     {
-                                    <li>@question.Question_ <a href="@Url.Action("Edit", "Comment", new {questionId = question.Id})">Comments <span class="badge">@question.Comments.Count</span></a><br />@Html.ActionLink("Delete", "Delete", "Question", new { id = question.Id }, null)</li>
+                                        <li>@question.Question_ <br /><a class="check-comment" href="@Url.Action("Edit", "Comment", new {questionId = question.Id})">Comments <span class="badge">@question.Comments.Count</span></a> |@Html.ActionLink("Delete", "Delete", "Question", new { id = question.Id }, new { @class = "text-danger" })</li>
+                                        <hr />
                                     }
-                        </ul>
+                                </ul>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
                 }
             }

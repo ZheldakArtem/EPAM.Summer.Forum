@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BLL.Interface;
 using BLL.Interface.Services;
 using DAL.Interface.Repository;
+using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Common;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels;
 using ORM;
@@ -30,14 +31,25 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         [AllowAnonymous]
         public ActionResult ShowQuestion(string categoryName, int page = 1)
         {
-            int pageSize = 2;
-            var questions = _questionService.GetQuestionsByCategory(categoryName).Select(q => q.ToQuestionViewModel());
+            var pageSize = Constants.ItemsPerPage;
+            var questions = _questionService
+                .GetQuestionsByCategory(categoryName)
+                .Select(q => q.ToQuestionViewModel());
 
             ViewBag.Category = categoryName.ToUpper();
-            
-            IEnumerable<QuestionViewModel> questionPerPages = questions.Skip((page - 1) * pageSize).Take(pageSize);
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = questions.Count() };
-            IndexViewModel<QuestionViewModel> ivm = new IndexViewModel<QuestionViewModel> { PageInfo = pageInfo, Entities = questionPerPages };
+
+            var questionPerPages = questions.Skip((page - 1) * pageSize).Take(pageSize);
+            var pageInfo = new PageInfo
+            {
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalItems = questions.Count()
+            };
+            var ivm = new IndexViewModel<QuestionViewModel>
+            {
+                PageInfo = pageInfo,
+                Entities = questionPerPages
+            };
 
             if (Request.IsAjaxRequest())
             {
@@ -49,7 +61,10 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         [HttpGet]
         public ActionResult CommentsOnQuestion(int questionId)
         {
-            ViewBag.Question = _questionService.GetQuestionById(questionId).ToQuestionViewModel().Question;
+            ViewBag.Question = _questionService
+                .GetQuestionById(questionId)
+                .ToQuestionViewModel()
+                .Question;
             ViewBag.QuestionId = questionId;
             ViewBag.Sender = _questionService.GetQuestionById(questionId).User;
             ViewBag.CurrentUser = _userService.GetByEmail(User.Identity.Name);
@@ -59,16 +74,11 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
         private IEnumerable<CommentsOnQuestionModel> GetCommentsOnQuestion(int questionId)
         {
-            var comments = _questionService.GetQuestionById(questionId).Comments.Select(c => new CommentsOnQuestionModel()
-            {
-                UserId = c.UserId,
-                CommentId = c.Id,
-                IsRight = c.IsRight,
-                FirstName = c.User.FirstName,
-                LastName = c.User.LastName,
-                Comment = c.Comment_,
-                DateOfComment = c.DataOfComment
-            });
+            var comments = 
+                _questionService
+                .GetQuestionById(questionId)
+                .Comments
+                .Select(c => c.ToCommentOnQuestionModel());
 
             return comments;
         }
@@ -84,6 +94,15 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
             if (question == null)
             {
                 return HttpNotFound();
+            }
+            if (Request.IsAjaxRequest())
+            {
+                _questionService.DeleteQuestion((int)id);
+                var newList = _questionService
+                    .GetAllQuestions()
+                    .Select(q => q.ToQuestionForAdmin());
+
+                return PartialView("PartialQuestionsForAdmin", newList);
             }
             return View(question.ToQuestionViewModel());
         }

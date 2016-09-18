@@ -72,8 +72,7 @@ namespace DAL
 
         public Role GetByPredicate(Expression<Func<Role, bool>> predicate)
         {
-            _logForum.Info($"Get role by predicate =>{predicate}. | {DateTime.Now}");
-            return _context.Set<Role>().FirstOrDefault(predicate); ;
+           return _context.Set<Role>().FirstOrDefault(predicate); ;
         }
     }
 }

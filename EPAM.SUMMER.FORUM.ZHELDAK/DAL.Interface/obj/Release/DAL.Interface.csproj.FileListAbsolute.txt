@@ -1,0 +1,11 @@
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\bin\Release\DAL.Interface.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\bin\Release\DAL.Interface.pdb
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\bin\Release\EntityFramework.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\bin\Release\ORM.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\bin\Release\ORM.pdb
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\bin\Release\EntityFramework.xml
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\obj\Release\DAL.Interface.csprojResolveAssemblyReference.cache
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\obj\Release\DAL.Interface.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL.Interface\obj\Release\DAL.Interface.pdb

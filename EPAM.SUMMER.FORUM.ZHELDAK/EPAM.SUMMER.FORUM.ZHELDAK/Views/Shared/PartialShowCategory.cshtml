@@ -1,0 +1,19 @@
+﻿@using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Pagination
+@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.CategoryModels
+@using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Helpers
+@model IndexViewModel<CategoryViewModel>
+
+<div id="category-container">
+    @foreach (var item in Model.Entities)
+    {
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center category">
+                @Html.ActionLink(@item.Name, "ShowQuestion", "Question", new {categoryName = @item.Name}, null)
+            </div>
+        </div>
+    }
+</div>
+<hr/>
+<div class="page-conteiner">
+    @Html.PageLinks(Model.PageInfo, (p, s) => Ajax.ActionLink(s, "MainPage", "Category", new { page = p }, new AjaxOptions { UpdateTargetId = "update" }).ToString())
+</div>

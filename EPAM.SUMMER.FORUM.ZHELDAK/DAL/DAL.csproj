@@ -58,6 +58,12 @@
     <Compile Include="CommentRepository.cs" />
     <Compile Include="NLog\ILogForum.cs" />
     <Compile Include="NLog\LogForum.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="QuestionRepository.cs" />
     <Compile Include="RoleRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -75,14 +81,38 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\DAL.dll" />
+    <Content Include="bin\Debug\DAL.pdb" />
+    <Content Include="bin\Release\DAL.dll" />
+    <Content Include="bin\Release\DAL.Interface.dll" />
+    <Content Include="bin\Release\DAL.Interface.pdb" />
+    <Content Include="bin\Release\DAL.pdb" />
+    <Content Include="bin\Release\EntityFramework.dll" />
+    <Content Include="bin\Release\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Release\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Release\EntityFramework.xml" />
+    <Content Include="bin\Release\NLog.dll" />
+    <Content Include="bin\Release\NLog.xml" />
+    <Content Include="bin\Release\ORM.dll" />
+    <Content Include="bin\Release\ORM.pdb" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="obj\Release\DAL.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\DAL.dll" />
+    <Content Include="obj\Release\DAL.pdb" />
+    <None Include="App.config" />
+    <None Include="bin\Release\NLog.config" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="obj\Release\DAL.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Release\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

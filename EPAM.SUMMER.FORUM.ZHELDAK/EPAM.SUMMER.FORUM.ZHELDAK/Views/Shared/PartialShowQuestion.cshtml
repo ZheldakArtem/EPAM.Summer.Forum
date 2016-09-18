@@ -2,6 +2,7 @@
 @using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
 @using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Helpers
 @model IndexViewModel<QuestionViewModel>
+
 <div id="question-table">
     <table class="table table-hover question">
         <thead>
@@ -24,10 +25,8 @@
             }
         </tbody>
     </table>
-    <hr />
 </div>
+<hr />
 <div class="page-conteiner">
-
-    @Html.PageLinks(Model.PageInfo, p => Ajax.ActionLink(p.ToString(), "ShowQuestion","Question", new { page = p, categoryId = @ViewBag.CategoryId, categoryName = @ViewBag.Category }, new AjaxOptions { UpdateTargetId = "update" }).ToString())
-    @*@Html.PageLinks(Model.PageInfo, p => Url.Action("ShowQuestion", new {page = p, categoryId = @ViewBag.CategoryId, categoryName = @ViewBag.Category}))*@
+    @Html.PageLinks(Model.PageInfo, (p, s) => Ajax.ActionLink(s, "ShowQuestion", "Question", new { page = p, categoryName = @ViewBag.Category }, new AjaxOptions { UpdateTargetId = "update" }).ToString())
 </div>

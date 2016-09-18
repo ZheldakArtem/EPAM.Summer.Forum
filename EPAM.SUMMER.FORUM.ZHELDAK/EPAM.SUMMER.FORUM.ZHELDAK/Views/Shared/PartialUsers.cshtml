@@ -4,34 +4,35 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<table class="table">
-    <tr><th style="color: #428bca;">Edit role of user</th><th></th><th></th></tr>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>Edit</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="col-md-8 col-md-offset-2">
+    <p style="color: #428bca;">Edit role of user</p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "EditRole", "Admin", new { id = item.UserId }, null)
-
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>Edit</th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "EditRole", "Admin", new { id = item.UserId }, new { @class = "text-warning" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

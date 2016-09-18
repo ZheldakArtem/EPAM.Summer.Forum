@@ -51,7 +51,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
                 models.MimeType = uploadImage.ContentType;
                 models.Photo = imageData;
             }
-           
+
             models.Email = User.Identity.Name;
             models.NewPassword = Crypto.HashPassword(models.NewPassword);
             _userService.UpdateUser(models.ToUser());
@@ -112,7 +112,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 
             if (user != null)
             {
-                return File(user.Photo,user.MimeType);
+                return File(user.Photo, user.MimeType);
             }
 
             return null;

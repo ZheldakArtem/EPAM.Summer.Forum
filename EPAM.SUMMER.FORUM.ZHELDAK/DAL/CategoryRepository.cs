@@ -26,21 +26,6 @@ namespace DAL
             _logForum.Info($"Create '{category.Name}' category. | {DateTime.Now}");
         }
 
-        public void Delete(int categoryId)
-        {
-            var delCategory = _context.Set<Category>().FirstOrDefault(c => c.Id == categoryId);
-            if (ReferenceEquals(delCategory, null))
-            {
-                var ex= new ArgumentException("The category isn't exist");
-                _logForum.Error(ex,$"{ex.Message} | {DateTime.Now}");
-
-                throw ex;
-            }
-
-            _context.Set<Category>().Remove(delCategory);
-            _logForum.Info($"Delete '{delCategory.Name}' category. | {DateTime.Now}");
-        }
-
         public void Update(Category category)
         {
             var upCategory = _context.Set<Category>().FirstOrDefault(c => c.Id == category.Id);
@@ -57,6 +42,21 @@ namespace DAL
             _logForum.Info($"Update '{category.Name}' category. | {DateTime.Now}");
         }
 
+        public void Delete(int categoryId)
+        {
+            var delCategory = _context.Set<Category>().FirstOrDefault(c => c.Id == categoryId);
+            if (ReferenceEquals(delCategory, null))
+            {
+                var ex= new ArgumentException("The category isn't exist");
+                _logForum.Error(ex,$"{ex.Message} | {DateTime.Now}");
+
+                throw ex;
+            }
+
+            _context.Set<Category>().Remove(delCategory);
+            _logForum.Info($"Delete '{delCategory.Name}' category. | {DateTime.Now}");
+        }
+        
         public IEnumerable<Category> GetAll()
         {
             _logForum.Info($"Get all categories. | {DateTime.Now}");

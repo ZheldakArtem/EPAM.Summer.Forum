@@ -26,13 +26,6 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CommentViewModel commentViewModel)
         {
-            //var comment = new CommentViewModel()
-            //{
-            //    QuestionId = int.Parse(Request.Form["QuestionId"]),
-            //    UserId = int.Parse(Request.Form["UserId"]),
-            //    Comment = Request.Form["Comment"]
-            //};
-
             _commentService.CreateComment(commentViewModel.ToComment());
             var newComment = _commentService.GetAllComments().Last();
 
@@ -76,14 +69,23 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             var comment = _commentService.GetCommentById((int)id);
+
             if (ReferenceEquals(comment, null))
             {
                 return HttpNotFound();
             }
+            if (Request.IsAjaxRequest())
+            {
+                _commentService.DeleteComment((int)id);
+                var comments = _commentService.GetAllComments().Select(c => c.ToCommentForAdminModel());
+
+                return PartialView("PartialCommentForAdmin", comments);
+            }
+
             return View(comment.ToCommentForAdminModel());
         }
-
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -1,16 +1,23 @@
 ﻿@using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
 @model IEnumerable<CommentsOnQuestionModel>
 
-<div class="col-md-6 col-md-offset-3 ">
-    <div class="row"><small>@ViewBag.Sender.FirstName @ViewBag.Sender.LastName</small></div>
-    <h4 class="text-justify question">@ViewBag.Question</h4>
+<div class="row">
+    <div class="col-md-2 cender">
+        <div class="row text-center">
+            <small>@ViewBag.Sender.FirstName @ViewBag.Sender.LastName</small>
+        </div>
+        <img src="@Url.Action("GetPhoto", "User", new {UserId = ViewBag.Sender.Id})" style="width: 130px; border-radius: 15px;" />
+    </div>
+    <div class="col-md-9 ">
+        <h4 class="text-justify question">@ViewBag.Question</h4>
+    </div>
 </div>
-
+<hr/>
 <div class="row">
     <div class="col-md-8 col-md-offset-2" id="comment-container">
         @foreach (var item in Model)
         {
-            <div class="row">
+            <div class="row commenter">
                 <div class="col-md-1">
                     <span class="glyphicon comment  @if (item.IsRight)
                                                     {
@@ -21,7 +28,7 @@
                     <div class="row">
                         <h6>@item.FirstName @item.LastName</h6>
                     </div>
-                    <img src="@Url.Action("GetPhoto", "User", new {item.UserId})" style="width:130px; height:110px;  border-radius:15px;" />
+                    <img src="@Url.Action("GetPhoto", "User", new {item.UserId})" style="width:130px;  border-radius:15px;" />
                 </div>
                 <div class="col-md-7 ">
                     <div class="textComment">
@@ -36,7 +43,7 @@
     </div>
 </div>
 <div class="row">
-    @using (Ajax.BeginForm("Create", "Comment", new AjaxOptions { InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comment-container" }))
+    @using (Ajax.BeginForm("Create", "Comment", new AjaxOptions { InsertionMode = InsertionMode.InsertAfter,OnSuccess = "cleartext",UpdateTargetId = "comment-container" }))
     {
         @Html.AntiForgeryToken()
         <input type="hidden" name="UserId" value=@ViewBag.CurrentUser.Id />

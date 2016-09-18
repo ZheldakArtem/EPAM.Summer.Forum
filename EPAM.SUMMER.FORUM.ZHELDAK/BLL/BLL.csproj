@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BllEntityMappers.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="CommentService.cs" />
     <Compile Include="QuestionService.cs" />
@@ -59,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL.Interface\BLL.Interface.csproj">
-      <Project>{08E2BF59-0E34-484E-A3D7-904CA5528D6A}</Project>
+      <Project>{08e2bf59-0e34-484e-a3d7-904ca5528d6a}</Project>
       <Name>BLL.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL.Interface\DAL.Interface.csproj">

@@ -57,6 +57,13 @@ namespace BLL.Interface.Services
         /// <param name="questionId"></param>
         /// <returns>Instance of question.</returns>
         Question GetQuestionById(int questionId);
-        
+
+        /// <summary>
+        ///  Get questions by category id.
+        /// </summary>
+        /// <param name="categoryName"></param>
+        /// <returns>Collection of questions</returns>
+        IEnumerable<Question> GetQuestionsByCategory(string categoryName);
+
     }
 }

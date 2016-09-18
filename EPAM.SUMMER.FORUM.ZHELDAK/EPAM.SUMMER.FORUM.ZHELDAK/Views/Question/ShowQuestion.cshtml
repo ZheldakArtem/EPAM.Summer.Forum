@@ -1,23 +1,21 @@
 ﻿@using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Pagination
 @using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
-@using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Helpers
 @model IndexViewModel<QuestionViewModel>
- @{
+@{
     ViewBag.Title = "ShowQuestion";
 }
 
 
 <div class="row">
     <div class="col-md-4 ">
-        <h1 class="text-center category-ref">@Html.ActionLink((string)@ViewBag.Category, "MainPage","Category")  &#8658</h1>
+        <h1 class="text-center category-ref">@Html.ActionLink((string)@ViewBag.Category, "MainPage", "Category")  &#8658</h1>
     </div>
     <div class="col-md-4 ">
         <h1 class="text-center">QUESTIONS</h1>
     </div>
 </div>
-<br/><br/>
+<br /><br />
 
 <div id="update">
-    @{ Html.RenderPartial("PartialShowQuestion", Model);}
-   
+    @Html.Partial("PartialShowQuestion", Model)
 </div>

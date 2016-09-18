@@ -139,7 +139,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
             byte[] imageData;
             if (ReferenceEquals(uploadImage, null))
             {
-                var filePath = Server.MapPath("~/fonts/NoPhoto.jpg");
+                var filePath = Server.MapPath("~/Image/NoPhoto.jpg");
                 using (Stream fstream = System.IO.File.OpenRead(filePath))
                 {
                     using (var binaryReader = new BinaryReader(fstream))

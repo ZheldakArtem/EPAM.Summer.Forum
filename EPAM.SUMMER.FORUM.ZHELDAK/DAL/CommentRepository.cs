@@ -25,21 +25,6 @@ namespace DAL
             _context.Set<Comment>().Add(comment);
         }
 
-        public void Delete(int commentId)
-        {
-            var delComment = _context.Set<Comment>().FirstOrDefault(c => c.Id == commentId);
-            if (ReferenceEquals(delComment, null))
-            {
-                var ex = new ArgumentException("The comment isn't exist");
-                _logForum.Error(ex, $"{ex.Message} | {DateTime.Now}");
-
-                throw ex;
-            }
-
-            _context.Set<Comment>().Remove(delComment);
-            _logForum.Info($"Delete comment => {delComment.Comment_}. | {DateTime.Now}");
-        }
-
         public void Update(Comment comment)
         {
             var upComment = _context.Set<Comment>().FirstOrDefault(c => c.Id == comment.Id);
@@ -56,6 +41,21 @@ namespace DAL
             _logForum.Info($"Update comment. | {DateTime.Now}");
         }
 
+        public void Delete(int commentId)
+        {
+            var delComment = _context.Set<Comment>().FirstOrDefault(c => c.Id == commentId);
+            if (ReferenceEquals(delComment, null))
+            {
+                var ex = new ArgumentException("The comment isn't exist");
+                _logForum.Error(ex, $"{ex.Message} | {DateTime.Now}");
+
+                throw ex;
+            }
+
+            _context.Set<Comment>().Remove(delComment);
+            _logForum.Info($"Delete comment => {delComment.Comment_}. | {DateTime.Now}");
+        }
+        
         public IEnumerable<Comment> GetAll()
         {
             _logForum.Info($"Get all comments. | {DateTime.Now}");

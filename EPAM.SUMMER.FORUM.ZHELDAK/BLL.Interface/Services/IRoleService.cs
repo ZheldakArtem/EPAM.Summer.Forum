@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using ORM;
 
 namespace BLL.Interface.Services
@@ -13,13 +14,6 @@ namespace BLL.Interface.Services
     public interface IRoleService
     {
         /// <summary>
-        /// Get all roles.
-        /// </summary>
-        /// <returns>Collection of roles.</returns>
-        IEnumerable<Role> GetAll();
-        Role GetById(int id);
-
-        /// <summary>
         /// Add new role.
         /// </summary>
         /// <param name="role">Instance of role.</param>
@@ -28,14 +22,27 @@ namespace BLL.Interface.Services
         /// <summary>
         /// Delete role.
         /// </summary>
-        /// <param name="roleId">Unique identifier of role.</param>
-        void Remove(int roleId);
+        /// <param name="id">Unique identifier of role.</param>
+        void Remove(int id);
 
         /// <summary>
         /// Edit role.
         /// </summary>
         /// <param name="role">Instance of role.</param>
         void Edit(Role role);
+
+        /// <summary>
+        /// Get all roles.
+        /// </summary>
+        /// <returns>Collection of roles.</returns>
+        IEnumerable<Role> GetAll();
+
+        /// <summary>
+        /// Get role by id.
+        /// </summary>
+        /// <param name="id">Unique identifier of role.</param>
+        /// <returns>Instance of role.</returns>
+        Role GetById(int id);
 
         /// <summary>
         /// Get role by name.

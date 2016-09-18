@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using BLL.Interface.Services;
+using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.CustomActionMethodSelector;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers;
 using EPAM.SUMMER.FORUM.ZHELDAK.Providers;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels;
@@ -24,7 +25,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         private readonly IRoleService _roleService;
         private readonly IQuestionService _questionService;
         private readonly ICommentService _commentService;
-        public AdminController(ICategoryService categoryService,IUserService userService,IRoleService roleService, IQuestionService questionService,ICommentService commentService)
+        public AdminController(ICategoryService categoryService, IUserService userService, IRoleService roleService, IQuestionService questionService, ICommentService commentService)
         {
             _roleService = roleService;
             _categoryService = categoryService;
@@ -34,24 +35,74 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         }
         public ActionResult Admin()
         {
-            return View("AdminPage");
+            var categories = _categoryService.GetAllCategories().Select(c => c.ToCategoryViewModel());
+            return View("~/Views/Admin/NonAjaxView/Categories.cshtml", categories);
         }
 
-        [ChildActionOnly]
+        #region Accept Ajax
+        [AcceptAjax]
         public ActionResult CategoriesForAdmin()
         {
             var categories = _categoryService.GetAllCategories().Select(c => c.ToCategoryViewModel());
             return PartialView("PartialCategories", categories);
         }
 
-        [ChildActionOnly]
-        public ActionResult UsersFodAdmin()
+        [AcceptAjax]
+        public ActionResult UsersForAdmin()
         {
             var role = _roleService.GetAll().First(r => r.Name == "admin");
-            var users = _userService.GetAllUsers().Where(u=>!u.Roles.Contains(role)).Select(u => u.ToUserForAdmin(_roleService));
+            var users = _userService.GetAllUsers().Where(u => !u.Roles.Contains(role)).Select(u => u.ToUserForAdmin(_roleService));
 
             return PartialView("PartialUsers", users);
         }
+
+        [AcceptAjax]
+        public ActionResult QuestionForAdmin()
+        {
+            var questions = _questionService.GetAllQuestions().Select(q => q.ToQuestionForAdmin());
+
+            return PartialView("PartialQuestionsForAdmin", questions);
+        }
+
+        [AcceptAjax]
+        public ActionResult CommentForAdmin()
+        {
+            var comment = _commentService.GetAllComments().Select(c => c.ToCommentForAdminModel());
+            return PartialView("PartialCommentForAdmin", comment);
+        }
+        #endregion
+
+        #region Non-Ajax
+        [ActionName("CategoriesForAdmin")]
+        public ActionResult NonAjaxCategoriesForAdmin()
+        {
+            var categories = _categoryService.GetAllCategories().Select(c => c.ToCategoryViewModel());
+            return View("PartialCategories", categories);
+        }
+
+        [ActionName("UsersForAdmin")]
+        public ActionResult NonAjaxUsersForAdmin()
+        {
+            var role = _roleService.GetAll().First(r => r.Name == "admin");
+            var users = _userService.GetAllUsers().Where(u => !u.Roles.Contains(role)).Select(u => u.ToUserForAdmin(_roleService));
+
+            return View("~/Views/Admin/NonAjaxView/Users.cshtml", users);
+        }
+
+        [ActionName("QuestionForAdmin")]
+        public ActionResult NonAjaxQuestionForAdmin()
+        {
+
+            return PartialView("PartialQuestionsForAdmin", _questionService.GetAllQuestions().Select(q => q.ToQuestionForAdmin()));
+        }
+
+        [ActionName("CommentForAdmin")]
+        public ActionResult NonAjaxCommentForAdmin()
+        {
+            var comment = _commentService.GetAllComments().Select(c => c.ToCommentForAdminModel());
+            return PartialView("PartialCommentForAdmin", comment);
+        }
+        #endregion
 
         [HttpGet]
         public ActionResult EditRole(int? id)
@@ -60,7 +111,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-           
+
             var user = _userService.GetUserById((int)id);
 
             if (user == null)
@@ -68,7 +119,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
                 return HttpNotFound();
             }
 
-            return  View(user.ToUserForAdmin(_roleService));
+            return View(user.ToUserForAdmin(_roleService));
         }
 
         [HttpPost]
@@ -83,17 +134,6 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
             return View(userForAdminModel);
         }
 
-        [ChildActionOnly]
-        public ActionResult QuestionForAdmin()
-        {
-           
-            return PartialView("PartialQuestions", _questionService.GetAllQuestions().Select(q => q.ToQuestionForAdmin()));
-        }
 
-        public ActionResult CommentForAdmin()
-        {
-            var comment = _commentService.GetAllComments().Select(c=>c.ToCommentForAdminModel());
-            return PartialView("PartialCommentForAdmin", comment);
-        }
     }
 }

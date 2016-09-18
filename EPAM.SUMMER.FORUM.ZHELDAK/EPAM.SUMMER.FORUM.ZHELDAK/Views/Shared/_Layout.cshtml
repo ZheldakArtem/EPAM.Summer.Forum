@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jqueryui")
 </head>
 <body>
     <nav class="navbar navbar-inverse  navbar-fixed-top">
@@ -12,22 +13,27 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href=@Url.Action("MainPage", "Category")>FORUM</a>
             </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href=@Url.Action("MainPage", "Category")>Categories</a></li>
-            </ul>
             @Html.Partial("PartialForLogin")
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    @RenderSection("autocomplete", false)
+                </li>
+            </ul>
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
-
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/register")
     @RenderSection("scripts", false)
+    @Scripts.Render("~/bundles/site")
     @RenderSection("account", false)
-    <footer></footer>
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <div class="to-top-button"></div>
+
+
+<footer></footer>
 </body>
 </html>

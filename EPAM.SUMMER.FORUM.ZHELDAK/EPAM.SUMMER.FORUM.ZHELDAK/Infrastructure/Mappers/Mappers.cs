@@ -9,6 +9,7 @@ using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.ComentModels;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.ComentsModels;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.QuestionModels;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.UserModels;
+using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.CategoryModels;
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers
 {
@@ -74,7 +75,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers
             return new Category()
             {
                 Id = categoryViewModel.Id,
-                Name = categoryViewModel.Name,
+                Name = categoryViewModel.Name.ToUpper(),
                 Description = categoryViewModel.Description
             };
         }
@@ -119,7 +120,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers
             return new CommentsOnQuestionModel()
             {
                 CommentId = comment.Id,
-                UserId=comment.UserId,
+                UserId = comment.UserId,
                 Comment = comment.Comment_,
                 DateOfComment = comment.DataOfComment,
                 FirstName = comment.User.FirstName,
@@ -193,6 +194,21 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers
                 FirstName = comment.User.FirstName,
                 LastName = comment.User.LastName,
                 IsRight = comment.IsRight,
+            };
+        }
+
+        public static CommentsOnQuestionModel ToCommentsOnQuestionModel(this Comment comment)
+        {
+            return new CommentsOnQuestionModel
+            {
+
+                UserId = comment.UserId,
+                CommentId = comment.Id,
+                IsRight = comment.IsRight,
+                FirstName = comment.User.FirstName,
+                LastName = comment.User.LastName,
+                Comment = comment.Comment_,
+                DateOfComment = comment.DataOfComment
             };
         }
 

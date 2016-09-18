@@ -14,3 +14,4 @@ C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL\obj\
 C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL\bin\Debug\NLog.config
 C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL\bin\Debug\NLog.dll
 C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL\bin\Debug\NLog.xml
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\DAL\bin\Debug\DAL.dll.config

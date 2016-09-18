@@ -1,0 +1,9 @@
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\ORM\bin\Release\ORM.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\ORM\bin\Release\ORM.pdb
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\ORM\bin\Release\EntityFramework.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\ORM\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\ORM\bin\Release\EntityFramework.xml
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\ORM\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\ORM\obj\Release\ORM.csprojResolveAssemblyReference.cache
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\ORM\obj\Release\ORM.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\ORM\obj\Release\ORM.pdb

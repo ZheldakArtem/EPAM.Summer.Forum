@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ORM;
-
+using BLL.Interface.Services;
 namespace BLL.Interface.Services
 {
     /// <summary>
@@ -19,17 +19,17 @@ namespace BLL.Interface.Services
         void CreateUser(User user);
 
         /// <summary>
-        /// Delete user.
-        /// </summary>
-        /// <param name="userId">Unique identifier of user.</param>
-        void DeleteUser(int userId);
-
-        /// <summary>
         /// Update user.
         /// </summary>
         /// <param name="user">Instance of user.</param>
         void UpdateUser(User user);
 
+        /// <summary>
+        /// Delete user.
+        /// </summary>
+        /// <param name="userId">Unique identifier of user.</param>
+        void DeleteUser(int userId);
+        
         /// <summary>
         /// Get all users.
         /// </summary>

@@ -1,0 +1,11 @@
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\bin\Release\BLL.Interface.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\bin\Release\BLL.Interface.pdb
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\bin\Release\EntityFramework.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\bin\Release\ORM.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\bin\Release\ORM.pdb
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\bin\Release\EntityFramework.xml
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\obj\Release\BLL.Interface.csprojResolveAssemblyReference.cache
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\obj\Release\BLL.Interface.dll
+C:\Users\Artem\Source\Repos\EPAM.Summer.Forum\EPAM.SUMMER.FORUM.ZHELDAK\BLL.Interface\obj\Release\BLL.Interface.pdb

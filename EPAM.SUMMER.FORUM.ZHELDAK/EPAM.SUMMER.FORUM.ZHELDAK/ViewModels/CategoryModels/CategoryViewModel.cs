@@ -6,13 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
+namespace EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.CategoryModels
 {
     public class CategoryViewModel
     {
-        [HiddenInput]
         public int Id { get; set; }
 
+        [Remote("CheckCategory", "Category", ErrorMessage = "Category already exists.")]
         [Required(ErrorMessage = "Enter the name of category")]
         [DisplayName("Category Name")]
         public string Name { get; set; }
