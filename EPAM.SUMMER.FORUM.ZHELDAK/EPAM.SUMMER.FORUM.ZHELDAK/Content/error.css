@@ -1,0 +1,11 @@
+﻿body.error404 {
+    background-image: url(/Image/404-page.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body.error500 {
+    background-image: url(/Image/500-page.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

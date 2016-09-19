@@ -17,28 +17,7 @@
     <div class="col-md-8 col-md-offset-2" id="comment-container">
         @foreach (var item in Model)
         {
-            <div class="row commenter">
-                <div class="col-md-1">
-                    <span class="glyphicon comment  @if (item.IsRight)
-                                                    {
-                                                        @: glyphicon-thumbs-up
-                                                    }"></span>
-                </div>
-                <div class="col-md-3">
-                    <div class="row">
-                        <h6>@item.FirstName @item.LastName</h6>
-                    </div>
-                    <img src="@Url.Action("GetPhoto", "User", new {item.UserId})" style="width:130px;  border-radius:15px;" />
-                </div>
-                <div class="col-md-7 ">
-                    <div class="textComment">
-                        @item.Comment
-                    </div>
-                    <div class="row">
-                        <h6><small class="date">@item.DateOfComment</small></h6>
-                    </div>
-                </div>
-            </div>
+           @Html.Partial("PartialComments", item)
         }
     </div>
 </div>

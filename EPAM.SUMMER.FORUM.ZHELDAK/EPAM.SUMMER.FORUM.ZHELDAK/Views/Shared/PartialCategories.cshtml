@@ -24,7 +24,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>@Html.ActionLink("Edit", "Edit", "Category", new {id = item.Id}, new {@class = "text-warning viewDialog" , data_dialog_title = "Edit" })</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Category", new {id = item.Id}, new {@class = "text-warning" , data_dialog_title = "Edit" })</td>
                 <td>@Ajax.ActionLink("Delete", "Delete", "Category", new {id = item.Id}, new AjaxOptions {Confirm = "Are you sure you want to remove this category?", UpdateTargetId = "update-admin"}, new {@class = "text-danger"})</td>
             </tr>
         }

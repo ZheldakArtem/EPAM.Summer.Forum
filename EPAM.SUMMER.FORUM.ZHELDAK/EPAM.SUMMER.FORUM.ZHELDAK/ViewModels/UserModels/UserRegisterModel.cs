@@ -10,11 +10,9 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
     public class UserRegisterViewModel
     {
         [Required(ErrorMessage = "Enter your First Name.")]
-        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Enter your Last Name.")]
-        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = " Enter your birthday.")]
@@ -28,7 +26,7 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
         [Remote("CheckEmail", "Account", ErrorMessage = "User whith this address already registered.")]
         [Display(Name = "Enter your e-mail")]
         public string Email { get; set; }
-        
+
         [StringLength(50, ErrorMessage = "The password must contain at least 6 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Enter your password")]

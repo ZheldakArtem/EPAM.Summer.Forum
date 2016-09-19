@@ -1,8 +1,9 @@
 ﻿body {
-    padding-top:50px;
+    padding-top: 50px;
     padding-bottom: 0px;
     background-attachment: fixed;
     background-image: url(/Image/Back.jpg);
+    background-size: cover;
 }
 
 .body-content {
@@ -27,12 +28,12 @@ textarea {
     cursor: pointer;
     position: fixed;
     display: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    bottom: 100px;
-    right: 100px;
-    background-color: red;
+    width: 40px;
+    height: 40px;
+    bottom: 70px;
+    right: 70px;
+    background-image: url(/Image/Up.png);
+    background-size: cover;
 }
 
 .category {
@@ -242,7 +243,20 @@ h6.user-name {
 }
 
 footer {
+    display: flex;
     background-color: #222222;
     min-height: 100px;
 }
 
+    footer p {
+        margin: auto;
+    }
+
+a.footer-href {
+    text-decoration: none;
+    color: #99998a;
+}
+
+    a.footer-href:hover {
+        color: #f1e3e3;
+    }

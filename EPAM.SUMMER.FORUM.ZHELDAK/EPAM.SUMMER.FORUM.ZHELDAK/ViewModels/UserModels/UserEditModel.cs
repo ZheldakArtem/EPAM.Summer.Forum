@@ -9,19 +9,15 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.UserModels
 {
     public class UserEditModel
     {
-        [HiddenInput]
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "The field can't be empty.")]
-        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "The field can't be empty.")]
-        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = " Enter your birthday.")]
-        [Display(Name = "Birthday")]
         [Remote("CheckBirthday", "Account", ErrorMessage = "Incorrect birthday.")]
         public string Birthday { get; set; }
 

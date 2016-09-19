@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing.Design;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using BLL.Interface.Services;
@@ -11,9 +10,6 @@ using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.CustomActionMethodSelector;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers;
 using EPAM.SUMMER.FORUM.ZHELDAK.Providers;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels;
-using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.QuestionModels;
-using Ninject.Infrastructure.Language;
-using ORM;
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 {

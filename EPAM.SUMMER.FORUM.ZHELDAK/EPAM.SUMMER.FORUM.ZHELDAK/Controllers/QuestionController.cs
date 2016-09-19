@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BLL.Interface;
 using BLL.Interface.Services;
-using DAL.Interface.Repository;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Common;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels;
-using ORM;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Pagination;
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
@@ -84,6 +81,40 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         }
 
         [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            var question = _questionService.GetQuestionById((int)id);
+            if (question == null)
+            {
+                return HttpNotFound();
+            }
+            var categories = _categoryService.GetAllCategories();
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
+
+            return View(question.ToQuestionViewModel());
+        }
+
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditConfirmed(QuestionViewModel questionViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _questionService.UpdateQuestion(questionViewModel.ToQuestion());
+
+                if (HttpContext.User.Identity.Name == "admin")
+                    return RedirectToAction("Admin", "Admin");
+
+                return RedirectToAction("AccountPage", "Account");
+            }
+            return View(questionViewModel);
+        }
+
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,12 +142,16 @@ namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _questionService.DeleteQuestion(id);
+            if (ModelState.IsValid)
+            {
+                _questionService.DeleteQuestion(id);
 
-            if (HttpContext.User.Identity.Name == "admin")
-                return RedirectToAction("Admin", "Admin");
+                if (HttpContext.User.Identity.Name == "admin")
+                    return RedirectToAction("Admin", "Admin");
 
-            return RedirectToAction("AccountPage", "Account");
+                return RedirectToAction("AccountPage", "Account");
+            }
+            return View();
         }
 
         public ActionResult Create()

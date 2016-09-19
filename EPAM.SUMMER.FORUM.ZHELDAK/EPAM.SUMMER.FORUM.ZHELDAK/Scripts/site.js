@@ -46,43 +46,16 @@ $(document).ready(function () {
         var newUrl = "/Question/ShowQuestion?categoryName=" + value;
         window.location.href = newUrl;
     });
-    
-});
 
-$(document).ready(function () {
-
-    $.ajaxSetup({ cache: false });
-
-    $(".viewDialog").on("click", function (e) {
-        e.preventDefault();
-
-        $("<div></div>")
-            .addClass("dialog")
-            .appendTo("body")
-            .dialog({
-                title: $(this).attr("data-dialog-title"),
-                close: function () { $(this).remove() },
-                height: 500,
-                width:600,
-                modal: true
-            })
-            .load(this.href);
-    });
-    $(".close").on("click", function (e) {
-        e.preventDefault();
-        $(this).closest(".dialog").dialog("close");
-    });
-
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function () {
         $(this).scrollTop() > 200 ? $(".to-top-button").fadeIn('slow') : $(".to-top-button").fadeOut('slow');
-        
+
     });
 
     $(".to-top-button").on("click", function (e) {
         $('body').animate({ scrollTop: 0 }, 500);
     });
-
-
+    
 });
 
 

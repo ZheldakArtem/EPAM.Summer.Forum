@@ -188,7 +188,7 @@
     <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\error404.css" />
+    <Content Include="Content\error.css" />
     <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -211,6 +211,8 @@
     <Content Include="Image\NoPhoto.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\500-page.jpg" />
+    <Content Include="Image\Up.png" />
     <Content Include="Scripts\autocomplete.js" />
     <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -274,6 +276,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\DefaultError.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

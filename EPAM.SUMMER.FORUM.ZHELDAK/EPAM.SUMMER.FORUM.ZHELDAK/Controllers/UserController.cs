@@ -8,9 +8,8 @@ using System.Web.Mvc;
 using System.Web.Security;
 using BLL.Interface.Services;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers;
-using EPAM.SUMMER.FORUM.ZHELDAK.Providers;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.UserModels;
-using ORM;
+
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 {

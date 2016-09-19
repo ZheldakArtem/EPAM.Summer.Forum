@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BLL.Interface.Services;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Mappers;
 using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels;
-using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.ComentModels;
-using ORM;
+
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;

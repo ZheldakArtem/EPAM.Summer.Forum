@@ -9,13 +9,13 @@ using System.Web.Mvc;
 namespace EPAM.SUMMER.FORUM.ZHELDAK.ViewModels
 {
     public class QuestionViewModel
-    {
-        [HiddenInput]
+    {       
         public int Id { get; set; }
         public int UserId { get; set; }
         public int CategoryId { get; set; }
 
         [StringLength(1000, ErrorMessage = "The question should contain from 6 to 1000 characters.", MinimumLength = 6)]
+        [Required(ErrorMessage = "The field can't be empty.")]
         [DisplayName("Enter question")]
         public string Question { get; set; }
 

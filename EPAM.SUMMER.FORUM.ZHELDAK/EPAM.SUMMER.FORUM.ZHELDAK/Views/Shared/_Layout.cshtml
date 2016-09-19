@@ -12,6 +12,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href=@Url.Action("MainPage", "Category")>FORUM</a>
+                <a class="navbar-brand active" href=@Url.Action("MainPage", "Category")>Categories</a>
             </div>
             @Html.Partial("PartialForLogin")
             <ul class="nav navbar-nav navbar-right">
@@ -31,9 +32,11 @@
     @RenderSection("account", false)
     @Scripts.Render("~/bundles/jqueryui")
 
-    <div class="to-top-button"></div>
-
-
-<footer></footer>
+<div class="to-top-button"></div>
+<footer>
+    <p>
+        <h1><a class="footer-href" href="https://careers.epam.by/">&lt;EPAM&gt;</a></h1>
+    </p>
+</footer>
 </body>
 </html>

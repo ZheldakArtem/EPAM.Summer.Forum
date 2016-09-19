@@ -53,7 +53,14 @@
                                 <ul>
                                     @foreach (var question in item.Questions)
                                     {
-                                        <li>@question.Question_ <br /><a class="check-comment" href="@Url.Action("Edit", "Comment", new {questionId = question.Id})">Comments <span class="badge">@question.Comments.Count</span></a> |@Html.ActionLink("Delete", "Delete", "Question", new { id = question.Id }, new { @class = "text-danger" })</li>
+                                        <li>
+                                            @question.Question_ <br/>
+                                            <a class="check-comment" href="@Url.Action("Edit", "Comment", new {questionId = question.Id})">
+                                                Comments<span class="badge">@question.Comments.Count</span>
+                                            </a>
+                                             |@Html.ActionLink("Delete", "Delete", "Question", new {id = question.Id}, new {@class = "text-danger"})
+                                             |@Html.ActionLink("Edit", "Edit", "Question", new { id = question.Id }, new { @class = "text-success" })
+                                        </li>
                                         <hr />
                                     }
                                 </ul>

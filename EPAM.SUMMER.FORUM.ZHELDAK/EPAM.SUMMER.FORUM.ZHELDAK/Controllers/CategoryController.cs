@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using BLL.Interface.Services;
 using EPAM.SUMMER.FORUM.ZHELDAK.Infrastructure.Common;
@@ -16,6 +14,7 @@ using EPAM.SUMMER.FORUM.ZHELDAK.ViewModels.CategoryModels;
 
 namespace EPAM.SUMMER.FORUM.ZHELDAK.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

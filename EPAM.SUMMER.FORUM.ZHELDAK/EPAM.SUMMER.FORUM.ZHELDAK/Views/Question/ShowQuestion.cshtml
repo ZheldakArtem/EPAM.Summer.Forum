@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-md-4 ">
-        <h1 class="text-center category-ref">@Html.ActionLink((string)@ViewBag.Category, "MainPage", "Category")  &#8658</h1>
+        <h1 class="text-center category-ref"> <a href=@Url.Action("MainPage", "Category") >&#8249 @ViewBag.Category</a></h1>
     </div>
     <div class="col-md-4 ">
         <h1 class="text-center">QUESTIONS</h1>
