@@ -25,18 +25,21 @@
     <div class="container body-content">
         @RenderBody()
     </div>
+
+
+    <div class="to-top-button"></div>
+    <footer>
+        <p>
+            <h1>
+                <a class="footer-href" href="https://careers.epam.by/">&lt;EPAM&gt;</a>
+            </h1>
+        </p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)
     @Scripts.Render("~/bundles/site")
     @RenderSection("account", false)
     @Scripts.Render("~/bundles/jqueryui")
-
-<div class="to-top-button"></div>
-<footer>
-    <p>
-        <h1><a class="footer-href" href="https://careers.epam.by/">&lt;EPAM&gt;</a></h1>
-    </p>
-</footer>
 </body>
 </html>
